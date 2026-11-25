@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Shopping PK | Factory & Wholesale Rates Across Pakistan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        daraz: 'var(--brand-primary, #f85606)',
+                        darazDark: 'var(--brand-primary-dark, #d64500)',
+                        amazonDark: 'var(--brand-header, #0f172a)',
+                        amazonNav: 'var(--brand-nav, #1e293b)',
+                        amazonYellow: 'var(--brand-accent, #fbbf24)'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        urdu: ['Noto Nastaliq Urdu', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --brand-primary: #f85606;
+            --brand-primary-dark: #c2410c;
+            --brand-header: #0f172a;
+            --brand-nav: #1e293b;
+            --brand-accent: #fbbf24;
+            --brand-bg: #f8fafc;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            background-color: var(--brand-bg);
+            background-image: radial-gradient(at 0% 0%, rgba(248, 86, 6, 0.04) 0px, transparent 50%),
+                              radial-gradient(at 100% 0%, rgba(15, 23, 42, 0.04) 0px, transparent 50%);
+            overflow-x: hidden;
+        }
+        .urdu-font {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 2.15;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Strict Overlay & Modal Visibility Rules: Never block clicks when closed */
+        .app-overlay {
+            display: none;
+            pointer-events: none;
+        }
+        .app-overlay.is-open {
+            display: flex;
+            pointer-events: auto;
+        }
+
+        .brand-card-hover {
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+        .brand-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px -10px rgba(15, 23, 42, 0.12), 0 4px 10px -4px rgba(248, 86, 6, 0.08);
+        }
+
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(248, 86, 6, 0.45); }
+            50% { box-shadow: 0 0 0 9px rgba(248, 86, 6, 0); }
+        }
+        .ai-ring { animation: softPulse 2.4s infinite; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-daraz selection:text-white">
+
+    <!-- ===================================================================== -->
+    <!-- MAIN STICKY HEADER (CLEAN FLAGSHIP DESIGN)                            -->
+    <!-- ===================================================================== -->
+    <header class="bg-amazonDark/95 backdrop-blur-md text-white sticky top-0 z-30 shadow-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2.5 sm:gap-4">
+            <!-- Left: 3-Line Menu + Editable Brand Logo -->
+            <div class="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
+                <button type="button" data-action="open-menu" aria-label="Open Menu" class="p-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-white transition cursor-pointer">
+                    <i class="fa-solid fa-bars text-lg sm:text-xl pointer-events-none"></i>
+                </button>
+
+                <!-- Brand Logo (Triple-Click opens Hidden Owner Admin) -->
+                <div id="brandLogoContainer" data-action="logo-tap" class="flex items-center gap-2.5 cursor-pointer select-none group">
+                    <div id="logoVisualBox" class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-daraz via-orange-500 to-amber-400 flex items-center justify-center text-white shadow-lg ring-2 ring-white/15 shrink-0 overflow-hidden pointer-events-none transition group-hover:scale-105">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M13 10l-2 4h3l-2 4" stroke="#fef08a"></path>
+                        </svg>
+                    </div>
+                    <div class="pointer-events-none">
+                        <div class="font-extrabold text-base sm:text-xl tracking-tight leading-none flex items-center gap-1.5">
+                            <span id="uiStoreName" class="bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">Smart Shopping</span>
+                            <span id="uiStoreSuffix" class="bg-gradient-to-r from-daraz to-amber-500 text-white text-[10px] sm:text-xs font-black px-2 py-0.5 rounded-md shadow-xs">PK</span>
+                        </div>
+                        <div class="text-[10px] text-slate-300/90 font-medium tracking-wider uppercase hidden sm:flex items-center gap-1 mt-0.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-[9px]"></i> Official Wholesale Flagship
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center: Live Search Bar (Desktop & Tablet) -->
+            <div class="hidden md:flex flex-1 max-w-2xl">
+                <div class="flex w-full rounded-2xl overflow-hidden bg-white focus-within:ring-2 focus-within:ring-daraz shadow-md border border-white/20">
+                    <select id="headerCatSelect" aria-label="Select Category" class="bg-slate-100 text-slate-700 text-xs font-bold px-3.5 border-r border-slate-200 outline-none cursor-pointer">
+                        <option value="all">All Categories</option>
+                    </select>
+                    <input type="text" id="desktopSearchInput" placeholder="Search factory-direct bags, smart watches, earbuds..." class="w-full px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none">
+                    <button type="button" data-action="go-home" class="bg-gradient-to-r from-daraz to-orange-500 hover:opacity-95 text-white px-6 transition flex items-center justify-center cursor-pointer">
+                        <i class="fa-solid fa-magnifying-glass pointer-events-none"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Cart Button -->
+            <div class="flex items-center gap-2 shrink-0">
+                <button type="button" data-action="open-cart" class="flex items-center gap-2 bg-gradient-to-r from-daraz to-orange-500 hover:brightness-110 text-white px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition shadow-md ring-1 ring-white/15 cursor-pointer">
+                    <div class="relative pointer-events-none">
+                        <i class="fa-solid fa-cart-shopping text-base"></i>
+                        <span id="headerCartBadge" class="absolute -top-2 -right-2.5 bg-amazonDark text-amazonYellow text-[10px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center border border-white/40 shadow">0</span>
+                    </div>
+                    <span class="pointer-events-none">Cart</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Input -->
+        <div class="md:hidden px-3 pb-3">
+            <div class="flex w-full rounded-xl overflow-hidden bg-white shadow-inner">
+                <input type="text" id="mobileSearchInput" placeholder="Search Smart Shopping PK..." class="w-full px-3.5 py-2 text-xs sm:text-sm text-slate-900 outline-none">
+                <button type="button" data-action="go-home" class="bg-daraz text-white px-4 cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass text-xs pointer-events-none"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- 3-LINE SLIDE-OUT NAVIGATION DRAWER                                    -->
+    <!-- ===================================================================== -->
+    <div id="slideMenuDrawer" class="app-overlay fixed inset-0 bg-black/60 backdrop-blur-xs z-50">
+        <div class="bg-white w-72 sm:w-80 h-full flex flex-col justify-between shadow-2xl">
+            <div class="overflow-y-auto">
+                <div class="bg-amazonDark text-white p-4 flex items-center justify-between">
+                    <div class="font-extrabold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-daraz"></i>
+                        <span id="drawerStoreName">Smart Shopping PK</span>
+                    </div>
+                    <button type="button" data-close-modal="slideMenuDrawer" class="text-gray-300 hover:text-white text-xl p-1 cursor-pointer">
+                        <i class="fa-solid fa-xmark pointer-events-none"></i>
+                    </button>
+                </div>
+
+                <nav class="p-3 space-y-1 text-sm font-semibold text-gray-700">
+                    <button type="button" data-action="go-home" data-close-modal="slideMenuDrawer" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-orange-50 hover:text-daraz transition text-left cursor-pointer">
+                        <i class="fa-solid fa-house w-5 text-daraz pointer-events-none"></i> Home / All Products
+                    </button>
+                    <button type="button" data-action="open-track" data-close-modal="slideMenuDrawer" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 hover:text-daraz transition text-left cursor-pointer">
+                        <span class="flex items-center gap-3 pointer-events-none"><i class="fa-solid fa-truck-fast w-5 text-daraz"></i> Track Order</span>
+                        <span class="text-xs text-gray-400 pointer-events-none">آرڈر ٹریک کریں</span>
+                    </button>
+                    <button type="button" data-action="open-policy" data-close-modal="slideMenuDrawer" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50 hover:text-daraz transition text-left cursor-pointer">
+                        <span class="flex items-center gap-3 pointer-events-none"><i class="fa-solid fa-box-open w-5 text-daraz"></i> Open Parcel & Return Policy</span>
+                    </button>
+                    <a id="drawerWaLink" href="https://wa.me/923433335740" target="_blank" rel="noopener noreferrer" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-green-50 hover:text-green-700 transition">
+                        <i class="fa-brands fa-whatsapp w-5 text-green-600 text-base"></i> Contact on WhatsApp
+                    </a>
+                </nav>
+
+                <!-- Categories List in Drawer -->
+                <div class="px-4 pt-2 pb-4 border-t border-gray-100">
+                    <div class="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-2">Shop by Category</div>
+                    <div id="drawerCategoriesList" class="space-y-1 text-xs font-semibold text-gray-700"></div>
+                </div>
+            </div>
+
+            <!-- Subtle Staff / Owner Access Footer -->
+            <div class="p-3 border-t border-gray-100 bg-gray-50 flex items-center justify-between text-[11px] text-gray-400">
+                <span>© 2026 Smart Shopping PK</span>
+                <button type="button" data-action="open-admin" data-close-modal="slideMenuDrawer" class="hover:text-gray-700 px-2 py-1 rounded cursor-pointer">
+                    <i class="fa-solid fa-shield-halved pointer-events-none"></i> Staff
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-5 space-y-4">
+
+        <!-- DECENT COMPACT URDU VALUE & TRUST STRIP ("ہماری خصوصیات") -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-3 sm:p-4 relative overflow-hidden">
+            <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amazonDark via-daraz to-amber-400"></div>
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 pt-0.5">
+                <div class="flex items-center justify-between lg:justify-start gap-2 shrink-0 border-b lg:border-b-0 pb-1.5 lg:pb-0 border-slate-100">
+                    <span class="bg-gradient-to-r from-orange-50 to-amber-50 text-daraz border border-orange-200/90 px-3.5 py-0.5 rounded-full text-xs sm:text-sm font-bold urdu-font shadow-2xs">
+                        ✨ ہماری خصوصیات
+                    </span>
+                    <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full lg:hidden">Verified Store</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 flex-1 text-right" dir="rtl">
+                    <div class="flex items-center gap-2.5 bg-slate-50/90 hover:bg-orange-50/40 transition px-3 py-2 rounded-xl border border-slate-200/60">
+                        <div class="w-7 h-7 rounded-lg bg-orange-100 text-daraz flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-tags text-xs"></i>
+                        </div>
+                        <span class="text-xs sm:text-[13px] font-bold text-slate-800 urdu-font">پاکستان میں سب سے کم ہول سیل اور فیکٹری ریٹس</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 bg-slate-50/90 hover:bg-emerald-50/40 transition px-3 py-2 rounded-xl border border-slate-200/60">
+                        <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-hand-holding-dollar text-xs"></i>
+                        </div>
+                        <span class="text-xs sm:text-[13px] font-bold text-slate-800 urdu-font">پورے پاکستان میں کیش آن ڈیلیوری (COD)</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 bg-slate-50/90 hover:bg-sky-50/40 transition px-3 py-2 rounded-xl border border-slate-200/60">
+                        <div class="w-7 h-7 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-box-open text-xs"></i>
+                        </div>
+                        <span class="text-xs sm:text-[13px] font-bold text-slate-800 urdu-font">ادائیگی سے پہلے پارسل کھول کر چیک کرنے کی سہولت</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 bg-slate-50/90 hover:bg-violet-50/40 transition px-3 py-2 rounded-xl border border-slate-200/60">
+                        <div class="w-7 h-7 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-rotate-left text-xs"></i>
+                        </div>
+                        <span class="text-xs sm:text-[13px] font-bold text-slate-800 urdu-font">7 دن کی آسان واپسی اور تبدیلی پالیسی</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- DEDICATED PRODUCT DETAIL VIEW (FOR META CAROUSEL ADS & CLICKS)    -->
+        <!-- ================================================================= -->
+        <section id="productDetailView" class="hidden space-y-4">
+            <!-- Breadcrumb / Back Bar -->
+            <div class="flex items-center justify-between bg-white px-3.5 py-2.5 rounded-xl shadow-2xs border border-gray-100 text-xs">
+                <button type="button" data-action="go-home" class="flex items-center gap-1.5 font-bold text-daraz hover:underline cursor-pointer">
+                    <i class="fa-solid fa-arrow-left pointer-events-none"></i> Back to All Products
+                </button>
+                <span id="detailBreadcrumbCat" class="text-gray-400 font-medium">Category</span>
+            </div>
+
+            <!-- Main Product Card -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-3.5 sm:p-6">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7">
+                    <!-- Multi-Image Gallery (5 Cols) -->
+                    <div class="md:col-span-5 space-y-2.5">
+                        <div data-action="zoom-detail-img" title="Click to Zoom Fullscreen" class="relative aspect-square rounded-xl overflow-hidden bg-white border border-gray-200 cursor-zoom-in group">
+                            <img id="mainDetailImg" src="" alt="Product Image" class="w-full h-full object-contain transition duration-300 group-hover:scale-105 pointer-events-none">
+                            <span id="detailDiscountBadge" class="absolute top-2.5 left-2.5 bg-daraz text-white text-xs font-extrabold px-2.5 py-1 rounded-lg shadow pointer-events-none"></span>
+                            <span class="absolute bottom-2.5 right-2.5 bg-black/65 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 backdrop-blur-xs pointer-events-none">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> Zoom
+                            </span>
+                        </div>
+                        <!-- Multiple Images Thumbnail Strip -->
+                        <div id="galleryThumbs" class="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-1"></div>
+                    </div>
+
+                    <!-- Product Core Info, Direct Action Buttons & Collapsible Details (7 Cols) -->
+                    <div class="md:col-span-7 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                <span id="detailCatBadge" class="bg-orange-50 text-daraz text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-orange-200"></span>
+                                <span id="detailStockBadge" class="bg-green-50 text-green-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">In Stock</span>
+                                <span class="bg-blue-50 text-blue-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-shield-check mr-1"></i>Factory Direct</span>
+                            </div>
+
+                            <!-- Short, Clean Product Title -->
+                            <h1 id="detailTitle" class="text-lg sm:text-2xl font-extrabold text-gray-900 leading-snug"></h1>
+
+                            <!-- Rating & Sold Count -->
+                            <div class="flex flex-wrap items-center gap-2.5 text-xs text-gray-500">
+                                <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> <span id="detailRating">4.9</span></span>
+                                <span>|</span>
+                                <span><span id="detailSold">320</span>+ Verified Orders</span>
+                                <span>|</span>
+                                <span class="text-green-600 font-semibold"><i class="fa-solid fa-box-open"></i> Open Parcel Allowed</span>
+                            </div>
+
+                            <!-- Wholesale / Factory Price Box -->
+                            <div class="bg-gradient-to-r from-orange-50/80 to-amber-50/60 p-3.5 rounded-xl border border-orange-200/80 flex flex-wrap items-center justify-between gap-2">
+                                <div class="flex items-baseline gap-2.5">
+                                    <span id="detailPrice" class="text-2xl sm:text-3xl font-black text-daraz"></span>
+                                    <span id="detailOldPrice" class="text-sm text-gray-400 line-through"></span>
+                                </div>
+                                <span class="text-[11px] font-extrabold text-daraz bg-white px-2.5 py-1 rounded-lg border border-orange-200 shadow-2xs">
+                                    Lowest Factory Wholesale Rate
+                                </span>
+                            </div>
+
+                            <!-- Variant Selector & Quantity Stepper -->
+                            <div class="flex flex-wrap items-center gap-4 pt-0.5">
+                                <div id="detailVariantsWrap" class="hidden space-y-1">
+                                    <span class="text-[11px] font-bold text-gray-500 uppercase block">Select Option:</span>
+                                    <div id="detailVariantsList" class="flex flex-wrap gap-1.5"></div>
+                                </div>
+
+                                <div class="space-y-1">
+                                    <span class="text-[11px] font-bold text-gray-500 uppercase block">Quantity:</span>
+                                    <div class="inline-flex items-center bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
+                                        <button type="button" data-action="detail-qty-minus" class="w-9 h-9 font-extrabold text-gray-700 hover:bg-gray-200 transition cursor-pointer">-</button>
+                                        <span id="detailQtyValue" class="w-10 text-center font-extrabold text-sm text-gray-900">1</span>
+                                        <button type="button" data-action="detail-qty-plus" class="w-9 h-9 font-extrabold text-gray-700 hover:bg-gray-200 transition cursor-pointer">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Prominent Order Now & Add to Cart Buttons -->
+                            <div class="grid grid-cols-2 gap-2.5 pt-1">
+                                <button type="button" id="detailOrderNowBtn" data-action="detail-order-now" class="bg-daraz hover:bg-darazDark text-white font-extrabold py-3.5 px-4 rounded-xl text-sm sm:text-base shadow-md flex items-center justify-center gap-2 transition cursor-pointer">
+                                    <i class="fa-solid fa-bolt text-amazonYellow pointer-events-none"></i>
+                                    <span class="pointer-events-none">Order Now (COD)</span>
+                                </button>
+                                <button type="button" id="detailAddCartBtn" data-action="detail-add-cart" class="bg-amazonYellow hover:bg-yellow-400 text-gray-900 font-extrabold py-3.5 px-4 rounded-xl text-sm sm:text-base shadow-xs flex items-center justify-center gap-2 transition cursor-pointer">
+                                    <i class="fa-solid fa-cart-plus pointer-events-none"></i>
+                                    <span class="pointer-events-none">Add to Cart</span>
+                                </button>
+                            </div>
+
+                            <!-- Trust Micro-Badges -->
+                            <div class="grid grid-cols-3 gap-2 pt-1 text-center text-[11px] font-semibold text-gray-600">
+                                <div class="bg-gray-50 py-2 px-1.5 rounded-xl border border-gray-100">
+                                    <i class="fa-solid fa-hand-holding-dollar text-green-600 block text-sm mb-0.5"></i>
+                                    Cash on Delivery
+                                </div>
+                                <div class="bg-gray-50 py-2 px-1.5 rounded-xl border border-gray-100">
+                                    <i class="fa-solid fa-box-open text-blue-600 block text-sm mb-0.5"></i>
+                                    Open & Check Parcel
+                                </div>
+                                <div class="bg-gray-50 py-2 px-1.5 rounded-xl border border-gray-100">
+                                    <i class="fa-solid fa-rotate-left text-purple-600 block text-sm mb-0.5"></i>
+                                    7-Day Easy Return
+                                </div>
+                            </div>
+
+                            <!-- Collapsible "See More Details & Specifications" Toggle -->
+                            <div class="pt-1 border-t border-gray-100">
+                                <button type="button" data-action="toggle-specs" class="w-full flex items-center justify-between bg-gray-50 hover:bg-gray-100 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-gray-800 transition border border-gray-200 cursor-pointer">
+                                    <span class="flex items-center gap-2 pointer-events-none">
+                                        <i class="fa-solid fa-list-ul text-daraz"></i>
+                                        <span>See More Details & Specifications</span>
+                                        <span class="urdu-font text-xs text-gray-500 font-normal">(مزید تفصیلات دیکھیں)</span>
+                                    </span>
+                                    <span id="specsToggleLabel" class="text-daraz flex items-center gap-1 text-xs pointer-events-none">Show <i class="fa-solid fa-chevron-down"></i></span>
+                                </button>
+
+                                <div id="collapsibleSpecsBody" class="hidden mt-2.5 bg-gray-50/80 p-3.5 rounded-xl border border-gray-200/80 space-y-2.5 text-xs sm:text-sm text-gray-700">
+                                    <ul id="detailHighlightsList" class="space-y-1.5"></ul>
+                                    <p id="detailDescriptionText" class="text-gray-600 leading-relaxed pt-2 border-t border-gray-200"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELATED & MORE PRODUCTS DIRECTLY BELOW -->
+            <div class="space-y-3 pt-1">
+                <div class="flex items-center justify-between bg-white px-4 py-3 rounded-xl shadow-2xs border border-gray-100">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-5 bg-daraz rounded-full"></span>
+                        <h2 class="font-extrabold text-sm sm:text-base text-gray-900">
+                            Related & More Products <span class="urdu-font text-xs sm:text-sm text-gray-500 font-normal mr-1">(مزید ملتی جلتی پراڈکٹس)</span>
+                        </h2>
+                    </div>
+                    <button type="button" data-action="go-home" class="text-xs font-bold text-daraz hover:underline cursor-pointer">View All</button>
+                </div>
+                <div id="relatedProductsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"></div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- MAIN STOREFRONT CATALOG VIEW (VISIBLE IMMEDIATELY ON OPEN)        -->
+        <!-- ================================================================= -->
+        <section id="storefrontCatalogView" class="space-y-3">
+            <!-- Category Filter Pills + Sort Bar -->
+            <div class="bg-white p-2.5 sm:p-3 rounded-xl shadow-2xs border border-gray-100 flex flex-wrap items-center justify-between gap-2.5">
+                <div id="categoryFilterBar" class="flex items-center gap-1.5 overflow-x-auto scrollbar-hide text-xs font-bold"></div>
+
+                <div class="flex items-center gap-2 text-xs ml-auto">
+                    <span id="itemsCountText" class="text-gray-400 font-semibold hidden sm:inline">0 items</span>
+                    <select id="catalogSortSelect" aria-label="Sort Products" class="bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 font-semibold text-gray-700 outline-none focus:border-daraz cursor-pointer">
+                        <option value="custom">Sort: Featured</option>
+                        <option value="low">Price: Low to High</option>
+                        <option value="high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Main Products Grid -->
+            <div id="mainProductsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"></div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- FOOTER                                                                -->
+    <!-- ===================================================================== -->
+    <footer class="bg-amazonDark text-gray-300 mt-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs">
+            <div>
+                <div class="font-extrabold text-lg text-white mb-1.5">
+                    <span id="footerBrandTitle">Smart Shopping</span> <span class="text-daraz">PK</span>
+                </div>
+                <p class="text-gray-400 leading-relaxed">
+                    Direct factory & wholesale rates across Pakistan with Cash on Delivery and Open-Parcel inspection before payment.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-sm mb-2">Customer Services</h4>
+                <ul class="space-y-1.5 text-gray-400">
+                    <li><button type="button" data-action="open-track" class="hover:text-white cursor-pointer">Track Your Parcel (آرڈر ٹریک کریں)</button></li>
+                    <li><button type="button" data-action="open-policy" class="hover:text-white cursor-pointer">Open-Parcel & 7-Day Return Policy</button></li>
+                    <li><button type="button" data-action="open-cart" class="hover:text-white cursor-pointer">Shopping Cart & Checkout</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-sm mb-2">24/7 Support</h4>
+                <p class="text-gray-400 mb-1.5"><i class="fa-brands fa-whatsapp text-green-400 mr-1"></i> WhatsApp: <span id="footerWaNumber">0343-3335740</span></p>
+                <p class="text-gray-400"><i class="fa-solid fa-truck text-daraz mr-1"></i> Nationwide Courier: PostEx, Leopards & TCS</p>
+            </div>
+        </div>
+        <div class="bg-black/40 text-center py-2.5 text-[11px] text-gray-500">
+            © 2026 Smart Shopping PK. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- FLOATING BOTTOM-RIGHT STACK: WHATSAPP BUTTON ABOVE AI ASSISTANT       -->
+    <!-- ===================================================================== -->
+    <div class="fixed bottom-4 right-4 z-30 flex flex-col items-end gap-2.5">
+        <!-- Direct WhatsApp Button (Positioned ABOVE AI Assistant) -->
+        <a id="floatingWaBtn" href="https://wa.me/923433335740" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="bg-[#25D366] hover:bg-[#1ebe5d] text-white px-3.5 py-2.5 rounded-full shadow-lg flex items-center gap-2 font-bold text-xs sm:text-sm transition hover:scale-105">
+            <i class="fa-brands fa-whatsapp text-lg sm:text-xl"></i>
+            <span>WhatsApp</span>
+        </a>
+
+        <!-- AI Shopping Assistant Button -->
+        <button type="button" data-action="toggle-ai" class="bg-gradient-to-r from-amazonDark to-daraz text-white px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 font-bold text-xs sm:text-sm transition hover:scale-105 ai-ring cursor-pointer">
+            <i class="fa-solid fa-robot text-amazonYellow text-base pointer-events-none"></i>
+            <span class="pointer-events-none">AI Assistant</span>
+        </button>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- AI SHOPPING ASSISTANT CHAT WIDGET                                     -->
+    <!-- ===================================================================== -->
+    <div id="aiChatBox" class="app-overlay fixed bottom-28 right-3 left-3 sm:left-auto sm:right-4 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 z-40 flex-col overflow-hidden" style="max-height: 72vh;">
+        <div class="bg-gradient-to-r from-amazonDark to-amazonNav text-white p-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-daraz flex items-center justify-center text-white">
+                    <i class="fa-solid fa-sparkles text-sm"></i>
+                </div>
+                <div>
+                    <div class="font-bold text-sm">Smart AI Shopping Assistant</div>
+                    <div class="text-[10px] text-green-400">● Online • Answers in English & Urdu</div>
+                </div>
+            </div>
+            <button type="button" data-action="toggle-ai" class="text-gray-300 hover:text-white text-lg px-1 cursor-pointer">
+                <i class="fa-solid fa-xmark pointer-events-none"></i>
+            </button>
+        </div>
+
+        <div id="aiMessagesFeed" class="p-3.5 space-y-2.5 overflow-y-auto flex-1 bg-gray-50 text-xs sm:text-sm" style="min-height: 220px;">
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-2xs border border-gray-100 text-gray-800">
+                Assalam-o-Alaikum! 👋 Welcome to <strong>Smart Shopping PK</strong>. Ask me anything about product prices, wholesale rates, Open-Parcel policy, delivery time, or recommendations in English or Urdu!
+            </div>
+        </div>
+
+        <!-- Quick Question Chips -->
+        <div class="px-2.5 py-2 bg-white border-t border-gray-100 flex gap-1.5 overflow-x-auto scrollbar-hide text-[11px]">
+            <button type="button" data-ai-quick="Kya parcel payment se pehle khol kar check kar sakte hain?" class="bg-orange-50 text-daraz border border-orange-200 px-2.5 py-1 rounded-full whitespace-nowrap font-semibold cursor-pointer">📦 Open Parcel Policy?</button>
+            <button type="button" data-ai-quick="Show me your best ladies bags and prices" class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full whitespace-nowrap font-semibold cursor-pointer">👜 Ladies Bags</button>
+            <button type="button" data-ai-quick="Delivery charges aur time kitna hai?" class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full whitespace-nowrap font-semibold cursor-pointer">🚚 Delivery Charges</button>
+            <button type="button" data-ai-quick="Return policy kya hai?" class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full whitespace-nowrap font-semibold cursor-pointer">🔄 Return Policy</button>
+        </div>
+
+        <form id="aiChatForm" class="p-2.5 bg-white border-t border-gray-200 flex gap-2">
+            <input type="text" id="aiUserInput" placeholder="Ask any question in English or Urdu..." class="flex-1 bg-gray-100 rounded-xl px-3 py-2 text-xs sm:text-sm outline-none focus:ring-1 focus:ring-daraz">
+            <button type="submit" class="bg-daraz hover:bg-darazDark text-white px-3.5 py-2 rounded-xl font-bold text-sm transition cursor-pointer">
+                <i class="fa-solid fa-paper-plane pointer-events-none"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- NATIVE URDU COD ORDER DRAWER & OFFICIAL ON-SITE RECEIPT               -->
+    <!-- ===================================================================== -->
+    <div id="cartDrawer" class="app-overlay fixed inset-0 bg-black/65 backdrop-blur-xs z-50 justify-end">
+        <div class="flex-1" data-close-modal="cartDrawer"></div>
+        <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl">
+            <div class="bg-amazonDark text-white px-4 py-3.5 flex items-center justify-between">
+                <div class="font-bold text-sm sm:text-base flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-daraz"></i>
+                    <span>Complete Your Order (Cash on Delivery)</span>
+                </div>
+                <button type="button" data-close-modal="cartDrawer" class="text-gray-300 hover:text-white text-xl cursor-pointer">
+                    <i class="fa-solid fa-xmark pointer-events-none"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Urdu Trust Banner Above Order Form -->
+                <div class="bg-orange-50 border border-orange-200 rounded-xl p-3 text-right space-y-1" dir="rtl">
+                    <div class="text-xs sm:text-sm font-bold text-daraz urdu-font">
+                        ✨ ہماری خصوصیات: پورے پاکستان میں سب سے کم ہول سیل ریٹس، کیش آن ڈیلیوری، ادائیگی سے پہلے پارسل کھول کر چیک کرنے کی سہولت اور 7 دن کی واپسی کی گارنٹی!
+                    </div>
+                </div>
+
+                <!-- Selected Cart Items -->
+                <div id="drawerCartItems" class="space-y-2"></div>
+
+                <!-- Bill Summary -->
+                <div id="drawerBillBox" class="bg-gray-50 p-3 rounded-xl border border-gray-200 space-y-1.5 text-xs hidden">
+                    <div class="flex justify-between text-gray-600"><span>Items Subtotal:</span><span id="billSub" class="font-bold">Rs. 0</span></div>
+                    <div class="flex justify-between text-gray-600"><span>Delivery Charges:</span><span id="billDel" class="font-bold">Rs. 200</span></div>
+                    <div class="flex justify-between text-sm sm:text-base font-black text-gray-900 pt-1.5 border-t border-gray-200">
+                        <span>Total Payable (COD):</span>
+                        <span id="billTotal" class="text-daraz">Rs. 0</span>
+                    </div>
+                </div>
+
+                <!-- Native Website Order Form in Polite Urdu -->
+                <form id="nativeOrderForm" class="bg-white p-3.5 rounded-2xl border-2 border-daraz/25 shadow-xs space-y-3 hidden" dir="rtl">
+                    <div class="text-center border-b border-gray-100 pb-2">
+                        <h3 class="font-bold text-base text-gray-900 urdu-font">اپنا آرڈر مکمل کریں (کیش آن ڈیلیوری)</h3>
+                        <p class="text-[11px] text-gray-500 urdu-font">نیچے دی گئی معلومات درج کریں، آپ کا آرڈر فوری بک ہو جائے گا</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-800 mb-1 urdu-font">آپ کا پورا نام *</label>
+                        <input type="text" id="custFullName" required placeholder="مثلاً: سدرہ / محمد احمد" class="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-sm outline-none focus:border-daraz focus:bg-white">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-800 mb-1 urdu-font">موبائل / واٹس ایپ نمبر *</label>
+                        <input type="tel" id="custMobile" required placeholder="03XXXXXXXXX" dir="ltr" class="w-full text-right bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-sm outline-none focus:border-daraz focus:bg-white">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-800 mb-1 urdu-font">شہر کا نام *</label>
+                        <input type="text" id="custCityName" list="pakistanCitiesList" required placeholder="اپنا شہر منتخب کریں یا لکھیں" class="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-sm outline-none focus:border-daraz focus:bg-white">
+                        <datalist id="pakistanCitiesList">
+                            <option value="Lahore"><option value="Karachi"><option value="Islamabad"><option value="Rawalpindi">
+                            <option value="Faisalabad"><option value="Multan"><option value="Peshawar"><option value="Quetta">
+                            <option value="Sialkot"><option value="Gujranwala"><option value="Bahawalpur"><option value="Sargodha">
+                            <option value="Hyderabad"><option value="Sukkur"><option value="Abbottabad"><option value="Mardan">
+                        </datalist>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-800 mb-1 urdu-font">مکمل پتہ (گھر / دکان نمبر، گلی، مشہور جگہ) *</label>
+                        <textarea id="custFullAddress" rows="2" required placeholder="مکمل ایڈریس لکھیں جہاں پارسل پہنچانا ہے" class="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-sm outline-none focus:border-daraz focus:bg-white"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-daraz hover:bg-darazDark text-white font-extrabold py-3.5 rounded-xl text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition cursor-pointer">
+                        <i class="fa-solid fa-circle-check pointer-events-none"></i>
+                        <span class="urdu-font pointer-events-none">آرڈر کنفرم کریں (Confirm Order)</span>
+                    </button>
+                </form>
+
+                <!-- Official On-Site Order Confirmed Receipt Screen -->
+                <div id="orderSuccessReceipt" class="hidden bg-white border-2 border-green-500/30 rounded-2xl p-4 sm:p-5 text-center space-y-3.5 shadow-sm">
+                    <div class="w-14 h-14 rounded-full bg-green-600 text-white flex items-center justify-center text-2xl mx-auto shadow-md">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div>
+                        <span class="bg-green-100 text-green-800 text-[11px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">Official Order Confirmed</span>
+                        <h3 class="font-extrabold text-lg text-gray-900 mt-1">Thank You! Your Order is Confirmed</h3>
+                        <p class="text-xs text-gray-600 urdu-font">شکریہ! آپ کا آرڈر کامیابی سے درج کر لیا گیا ہے۔</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200 text-left text-xs space-y-1.5">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Order ID:</span>
+                            <strong id="receiptOrderId" class="text-daraz text-sm font-black">SSP-0000</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Estimated Delivery:</span>
+                            <strong class="text-gray-800">2 – 4 Working Days</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Payment Mode:</span>
+                            <strong class="text-green-700">COD (Open Parcel Allowed)</strong>
+                        </div>
+                        <div class="border-t border-gray-200 pt-1.5 mt-1.5">
+                            <span class="text-gray-500 block mb-0.5">Order Summary:</span>
+                            <div id="receiptItemsList" class="text-gray-800 font-medium space-y-0.5"></div>
+                        </div>
+                        <div class="flex justify-between border-t border-gray-200 pt-1.5 font-black text-sm text-gray-900">
+                            <span>Total Payable on Delivery:</span>
+                            <span id="receiptTotalAmount" class="text-daraz">Rs. 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Primary WhatsApp Confirmation Copy Button -->
+                    <a id="receiptOptionalWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm shadow flex items-center justify-center gap-2 transition">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Send Confirmation on WhatsApp</span>
+                    </a>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" data-action="track-from-receipt" class="bg-orange-50 hover:bg-orange-100 text-daraz border border-orange-200 font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                            <i class="fa-solid fa-truck-fast mr-1 pointer-events-none"></i> Track Status
+                        </button>
+                        <button type="button" data-close-modal="cartDrawer" class="bg-amazonDark hover:bg-black text-white font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                            Continue Shopping
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- FULLSCREEN PRODUCT IMAGE ZOOM LIGHTBOX                                -->
+    <!-- ===================================================================== -->
+    <div id="imageLightboxModal" data-close-modal="imageLightboxModal" class="app-overlay fixed inset-0 bg-black/90 z-50 items-center justify-center p-3 sm:p-6">
+        <button type="button" data-close-modal="imageLightboxModal" class="absolute top-4 right-4 bg-white/15 hover:bg-white/30 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl cursor-pointer">
+            <i class="fa-solid fa-xmark pointer-events-none"></i>
+        </button>
+        <img id="lightboxZoomImg" src="" alt="Zoomed Product" class="max-w-full max-h-[86vh] rounded-2xl object-contain shadow-2xl bg-white p-2">
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TRACK ORDER & POLICY MODALS                                           -->
+    <!-- ===================================================================== -->
+    <div id="trackModal" class="app-overlay fixed inset-0 bg-black/60 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl relative">
+            <button type="button" data-close-modal="trackModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-lg cursor-pointer">
+                <i class="fa-solid fa-xmark pointer-events-none"></i>
+            </button>
+            <h3 class="font-extrabold text-lg text-gray-900 mb-1"><i class="fa-solid fa-truck-fast text-daraz mr-1.5"></i>Track Your Parcel</h3>
+            <p class="text-xs text-gray-500 mb-3">Enter your Order ID (e.g. SSP-4821) or Phone Number:</p>
+            <div class="flex gap-2 mb-3">
+                <input type="text" id="trackInputField" placeholder="Order ID or 03XXXXXXXXX" class="flex-1 border border-gray-300 rounded-xl px-3 py-2 text-sm outline-none focus:border-daraz">
+                <button type="button" data-action="search-track" class="bg-daraz hover:bg-darazDark text-white px-4 py-2 rounded-xl text-sm font-bold cursor-pointer">Track</button>
+            </div>
+            <div id="trackResultsBox" class="space-y-2.5 max-h-72 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <div id="policyModal" class="app-overlay fixed inset-0 bg-black/60 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl relative space-y-3">
+            <button type="button" data-close-modal="policyModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-lg cursor-pointer">
+                <i class="fa-solid fa-xmark pointer-events-none"></i>
+            </button>
+            <h3 class="font-extrabold text-lg text-gray-900"><i class="fa-solid fa-shield-check text-daraz mr-1.5"></i>Customer Guarantee & Return Policy</h3>
+            <div class="space-y-2.5 text-xs text-gray-700 leading-relaxed">
+                <div class="bg-orange-50 p-3 rounded-xl border border-orange-100">
+                    <strong class="text-daraz block mb-0.5">1. Open Parcel Before Payment (پارسل کھول کر چیک کریں):</strong>
+                    You can inspect your parcel upon delivery to verify the item before handing cash to the rider.
+                </div>
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
+                    <strong class="text-gray-900 block mb-0.5">2. Factory & Wholesale Rates:</strong>
+                    We source directly from manufacturers & wholesale hubs so you pay the lowest price in Pakistan.
+                </div>
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
+                    <strong class="text-gray-900 block mb-0.5">3. 7-Day Easy Return & Exchange:</strong>
+                    If any item has a manufacturing defect or wrong variant, contact us on WhatsApp within 7 days for an instant replacement or refund.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- ZERO-CODE OWNER ADMIN PANEL (HIDDEN FROM CUSTOMERS)                   -->
+    <!-- ===================================================================== -->
+    <div id="adminPanelModal" class="app-overlay fixed inset-0 bg-black/80 backdrop-blur-xs z-50 items-center justify-center p-2 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-5xl w-full shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
+            <div class="bg-amazonDark text-white px-5 py-3.5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="bg-daraz text-white text-[11px] font-black px-2 py-0.5 rounded">ADMIN</span>
+                    <h2 class="font-bold text-sm sm:text-base">Smart Shopping PK — Zero-Code Store Control</h2>
+                </div>
+                <button type="button" data-close-modal="adminPanelModal" class="text-gray-300 hover:text-white text-xl cursor-pointer">
+                    <i class="fa-solid fa-xmark pointer-events-none"></i>
+                </button>
+            </div>
+
+            <!-- PIN Login Screen -->
+            <div id="adminPinScreen" class="p-8 text-center max-w-sm mx-auto space-y-4">
+                <div class="w-14 h-14 rounded-full bg-orange-100 text-daraz flex items-center justify-center text-2xl mx-auto">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="font-extrabold text-lg text-gray-900">Owner Login</h3>
+                <p class="text-xs text-gray-500">Enter your secret Admin PIN (Default: <strong>1234</strong>)</p>
+                <input type="password" id="adminPinField" placeholder="••••" class="w-full text-center tracking-widest font-black text-xl border border-gray-300 rounded-xl px-4 py-2.5 outline-none focus:border-daraz">
+                <button type="button" data-action="unlock-admin" class="w-full bg-daraz hover:bg-darazDark text-white font-bold py-2.5 rounded-xl text-sm shadow cursor-pointer">Access Dashboard</button>
+            </div>
+
+            <!-- Authenticated Admin Dashboard -->
+            <div id="adminDashboardArea" class="hidden flex-1 flex-col overflow-hidden">
+                <!-- Tabs -->
+                <div class="bg-gray-100 px-4 py-2 border-b border-gray-200 flex gap-2 overflow-x-auto scrollbar-hide text-xs font-bold">
+                    <button type="button" data-admin-tab="admProductsTab" class="adm-tab bg-amazonDark text-white px-3.5 py-2 rounded-lg whitespace-nowrap cursor-pointer">🛍️ Products & Meta Ad Links</button>
+                    <button type="button" data-admin-tab="admAIImporterTab" class="adm-tab bg-white text-gray-700 px-3.5 py-2 rounded-lg whitespace-nowrap border border-gray-200 cursor-pointer">🤖 AI AR-Dropshipping Importer</button>
+                    <button type="button" data-admin-tab="admOrdersTab" class="adm-tab bg-white text-gray-700 px-3.5 py-2 rounded-lg whitespace-nowrap border border-gray-200 cursor-pointer">📦 Orders (<span id="admOrderCount">0</span>)</button>
+                    <button type="button" data-admin-tab="admBrandTab" class="adm-tab bg-white text-gray-700 px-3.5 py-2 rounded-lg whitespace-nowrap border border-gray-200 cursor-pointer">🎨 Logo, Settings & Live Export</button>
+                </div>
+
+                <div class="p-4 sm:p-5 overflow-y-auto flex-1 space-y-5">
+
+                    <!-- TAB 1: PRODUCTS MANAGER, REORDERING & META CAROUSEL LINKS -->
+                    <div id="admProductsTab" class="adm-pane space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 bg-orange-50 p-3 rounded-xl border border-orange-200">
+                            <div class="text-xs text-gray-700">
+                                <strong>Meta Carousel Ads Tip:</strong> Click <strong>"Copy Ad Link"</strong> on any product to paste into your Meta Carousel Ad card. Use Up/Down arrows to reorder products.
+                            </div>
+                            <button type="button" data-action="open-new-product" class="bg-daraz hover:bg-darazDark text-white px-4 py-2 rounded-xl text-xs font-extrabold shadow shrink-0 cursor-pointer">
+                                + Add New Product
+                            </button>
+                        </div>
+
+                        <div id="adminProductsRows" class="space-y-2.5"></div>
+                    </div>
+
+                    <!-- TAB 2: AI AR DROPSHIPPING / MARKAZ IMPORTER -->
+                    <div id="admAIImporterTab" class="adm-pane hidden space-y-4">
+                        <div class="bg-gradient-to-r from-orange-50 to-amber-50 p-4 rounded-xl border border-orange-200">
+                            <h3 class="font-extrabold text-sm sm:text-base text-gray-900"><i class="fa-solid fa-wand-magic-sparkles text-daraz mr-1"></i> 1-Click AR Dropshipping / Markaz AI Importer</h3>
+                            <p class="text-xs text-gray-600 mt-0.5">Copy raw product text from AR Dropshipping, paste below with your supplier cost, and AI will build a clean listing automatically.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold mb-1">Paste Supplier Raw Product Details *</label>
+                                    <textarea id="aiSupplierRawText" rows="5" placeholder="Paste full title & description from AR Dropshipping / Markaz here..." class="w-full border border-gray-300 rounded-xl p-3 text-xs outline-none focus:border-daraz"></textarea>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2.5">
+                                    <div>
+                                        <label class="block text-xs font-bold mb-1">Wholesale Cost (Rs) *</label>
+                                        <input type="number" id="aiCostInput" placeholder="e.g. 950" class="w-full border border-gray-300 rounded-xl px-3 py-2 text-xs">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold mb-1">Your Profit (Rs)</label>
+                                        <input type="number" id="aiProfitInput" value="550" class="w-full border border-gray-300 rounded-xl px-3 py-2 text-xs">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold mb-1">Product Image URLs (comma-separated for multiple images)</label>
+                                    <input type="text" id="aiImgsInput" placeholder="https://img1.jpg, https://img2.jpg" class="w-full border border-gray-300 rounded-xl px-3 py-2 text-xs">
+                                </div>
+                                <button type="button" id="runAiImportBtn" data-action="run-ai-import" class="w-full bg-daraz hover:bg-darazDark text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow flex items-center justify-center gap-2 cursor-pointer">
+                                    <i class="fa-solid fa-sparkles pointer-events-none"></i>
+                                    <span class="pointer-events-none">AI Extract & Optimize Product</span>
+                                </button>
+                            </div>
+
+                            <form id="aiImportSaveForm" class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-2.5 text-xs">
+                                <div class="font-bold text-gray-500 uppercase">Ready-to-Publish Preview</div>
+                                <div>
+                                    <label class="block font-bold mb-0.5">Clean Product Title *</label>
+                                    <input type="text" id="aiOutTitle" required class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 font-semibold">
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="block font-bold mb-0.5">Category *</label>
+                                        <input type="text" id="aiOutCat" required placeholder="Ladies Bags" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5">
+                                    </div>
+                                    <div>
+                                        <label class="block font-bold mb-0.5">Sale Price *</label>
+                                        <input type="number" id="aiOutPrice" required class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5 font-bold text-daraz">
+                                    </div>
+                                    <div>
+                                        <label class="block font-bold mb-0.5">Old Price</label>
+                                        <input type="number" id="aiOutOldPrice" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block font-bold mb-0.5">Highlights (one per line)</label>
+                                    <textarea id="aiOutHighlights" rows="3" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block font-bold mb-0.5">Description</label>
+                                    <textarea id="aiOutDesc" rows="2" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1.5"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-xl text-xs shadow cursor-pointer">
+                                    Publish to Storefront Now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: CUSTOMER ORDERS & COURIER SLIPS -->
+                    <div id="admOrdersTab" class="adm-pane hidden space-y-3">
+                        <div class="flex flex-wrap items-center justify-between gap-2 bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs">
+                            <span class="font-bold text-gray-700">Manage Customer COD Orders & Export Courier Data</span>
+                            <button type="button" data-action="export-csv" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg font-bold cursor-pointer">
+                                <i class="fa-solid fa-file-csv mr-1 pointer-events-none"></i> Export CSV
+                            </button>
+                        </div>
+                        <div id="adminOrdersListBox" class="space-y-3"></div>
+                    </div>
+
+                    <!-- TAB 4: LOGO CUSTOMIZER, SILENT CLOUD WEBHOOK & LIVE EXPORT -->
+                    <div id="admBrandTab" class="adm-pane hidden space-y-5">
+                        <!-- 1-Click Publish to GitHub Pages Box -->
+                        <div class="bg-gradient-to-r from-amazonDark to-amazonNav text-white p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow">
+                            <div class="space-y-1 max-w-xl">
+                                <div class="font-extrabold text-sm sm:text-base text-amazonYellow"><i class="fa-solid fa-cloud-arrow-up mr-1"></i> Make Your Changes Live for All Customers</div>
+                                <p class="text-xs text-gray-300">After adding/reordering products or changing your logo, click <strong>Download Updated index.html</strong> and upload it to your GitHub repository so every visitor sees your latest catalog!</p>
+                            </div>
+                            <button type="button" data-action="download-html" class="bg-daraz hover:bg-darazDark text-white font-extrabold px-4 py-3 rounded-xl text-xs sm:text-sm shadow-lg shrink-0 cursor-pointer">
+                                <i class="fa-solid fa-download mr-1.5 pointer-events-none"></i> Download Updated index.html
+                            </button>
+                        </div>
+
+                        <form id="brandSettingsForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200 text-xs">
+                            <!-- Brand Color Theme Switcher -->
+                            <div class="sm:col-span-2 bg-white p-3.5 rounded-xl border border-gray-200 space-y-2">
+                                <label class="block font-extrabold text-gray-800"><i class="fa-solid fa-palette text-daraz mr-1"></i> Brand Color Style (1-Click Store Theme)</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="themePresetsGrid">
+                                    <button type="button" data-theme-preset="sunset" class="theme-preset-btn flex items-center gap-2 p-2 rounded-xl border-2 border-gray-200 hover:border-daraz text-left font-bold cursor-pointer">
+                                        <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#0f172a] to-[#f85606] shrink-0"></span>
+                                        <span>Sunset Slate</span>
+                                    </button>
+                                    <button type="button" data-theme-preset="royal" class="theme-preset-btn flex items-center gap-2 p-2 rounded-xl border-2 border-gray-200 hover:border-indigo-600 text-left font-bold cursor-pointer">
+                                        <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#1e1b4b] to-[#4f46e5] shrink-0"></span>
+                                        <span>Royal Indigo</span>
+                                    </button>
+                                    <button type="button" data-theme-preset="emerald" class="theme-preset-btn flex items-center gap-2 p-2 rounded-xl border-2 border-gray-200 hover:border-emerald-600 text-left font-bold cursor-pointer">
+                                        <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#064e3b] to-[#059669] shrink-0"></span>
+                                        <span>Emerald Luxe</span>
+                                    </button>
+                                    <button type="button" data-theme-preset="crimson" class="theme-preset-btn flex items-center gap-2 p-2 rounded-xl border-2 border-gray-200 hover:border-rose-600 text-left font-bold cursor-pointer">
+                                        <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#18181b] to-[#e11d48] shrink-0"></span>
+                                        <span>Crimson Noir</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block font-bold mb-1">Store Name</label>
+                                <input type="text" id="cfgStoreName" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">Store Badge / Suffix (e.g. PK)</label>
+                                <input type="text" id="cfgStoreSuffix" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">WhatsApp Number (923XXXXXXXXX)</label>
+                                <input type="text" id="cfgWaNumber" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">Delivery Fee (Rs.)</label>
+                                <input type="number" id="cfgDeliveryFee" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">Custom Logo Image URL (Leave blank for Vector Icon)</label>
+                                <input type="text" id="cfgLogoUrl" placeholder="https://example.com/my-logo.png" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">Or Upload Logo Image from Phone/PC</label>
+                                <input type="file" id="cfgLogoFile" accept="image/*" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-1.5 text-xs">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">Change Admin PIN</label>
+                                <input type="text" id="cfgAdminPin" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block font-bold mb-1">Silent Order Webhook / Google Sheet URL (Optional)</label>
+                                <input type="url" id="cfgWebhookUrl" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-sm">
+                            </div>
+
+                            <!-- 1-Click Google Apps Script Setup Helper -->
+                            <div class="sm:col-span-2 bg-white p-3 rounded-xl border border-gray-200 space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-gray-800"><i class="fa-solid fa-table text-green-600 mr-1"></i> Silent Cloud Order Auto-Save (Google Sheet Setup)</span>
+                                    <button type="button" data-action="copy-gas-script" class="text-[11px] bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-lg font-bold hover:bg-green-100 cursor-pointer">
+                                        Copy Google Apps Script
+                                    </button>
+                                </div>
+                                <p class="text-[11px] text-gray-500">
+                                    Create a Google Sheet → <strong>Extensions → Apps Script</strong> → paste the copied script → Deploy as <strong>Web App (Anyone)</strong> → paste the Web App URL above.
+                                </p>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <button type="submit" class="w-full bg-amazonDark hover:bg-black text-white font-bold py-3 rounded-xl text-sm cursor-pointer">Save Logo & Store Settings</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- ZERO-CODE ADD / EDIT PRODUCT MODAL (SUPPORTS MULTIPLE IMAGES)         -->
+    <!-- ===================================================================== -->
+    <div id="productFormModal" class="app-overlay fixed inset-0 bg-black/75 z-50 items-center justify-center p-3 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-5 shadow-2xl my-auto relative">
+            <button type="button" data-close-modal="productFormModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-lg cursor-pointer">
+                <i class="fa-solid fa-xmark pointer-events-none"></i>
+            </button>
+            <h3 id="prodFormHeading" class="font-extrabold text-lg text-gray-900 mb-3">Add / Edit Product</h3>
+
+            <form id="productEditorForm" class="space-y-3 text-xs">
+                <input type="hidden" id="pfId">
+                <div>
+                    <label class="block font-bold mb-1">Product Title *</label>
+                    <input type="text" id="pfTitle" required placeholder="e.g. Tan Marble Premium Tote Bag" class="w-full border border-gray-300 rounded-xl px-3 py-2">
+                </div>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="block font-bold mb-1">Category *</label>
+                        <input type="text" id="pfCategory" required placeholder="e.g. Ladies Bags" class="w-full border border-gray-300 rounded-xl px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">Availability</label>
+                        <select id="pfInStock" class="w-full border border-gray-300 rounded-xl px-3 py-2">
+                            <option value="true">In Stock</option>
+                            <option value="false">Out of Stock</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        <label class="block font-bold mb-1">Sale Price (Rs) *</label>
+                        <input type="number" id="pfPrice" required class="w-full border border-gray-300 rounded-xl px-3 py-2 font-bold text-daraz">
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">Original Price (Rs)</label>
+                        <input type="number" id="pfOldPrice" class="w-full border border-gray-300 rounded-xl px-3 py-2">
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">Wholesale Cost (Rs)</label>
+                        <input type="number" id="pfCostPrice" class="w-full border border-gray-300 rounded-xl px-3 py-2">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Colors / Variants (Optional, comma-separated)</label>
+                    <input type="text" id="pfVariants" placeholder="e.g. Tan Brown, Classic Black, Maroon" class="w-full border border-gray-300 rounded-xl px-3 py-2">
+                </div>
+
+                <!-- Multiple Images Section -->
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 space-y-2">
+                    <label class="block font-bold text-gray-800">Product Images (Add Multiple URLs or Upload Photos) *</label>
+                    <textarea id="pfImagesList" rows="2" required placeholder="Paste image links separated by comma or new line..." class="w-full bg-white border border-gray-300 rounded-lg p-2 text-[11px]"></textarea>
+                    <div class="flex items-center justify-between gap-2">
+                        <label class="bg-white border border-gray-300 hover:bg-gray-100 px-3 py-1.5 rounded-lg font-bold cursor-pointer inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-images text-daraz"></i> + Upload Multiple Photos
+                            <input type="file" id="pfMultiImageInput" accept="image/*" multiple class="hidden">
+                        </label>
+                        <span id="pfImgCountBadge" class="text-[11px] font-bold text-green-700"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold mb-1">Key Bullet Points (One per line - shown inside See Details)</label>
+                    <textarea id="pfHighlights" rows="3" placeholder="Premium PU leather&#10;Spacious compartment&#10;Open parcel before payment" class="w-full border border-gray-300 rounded-xl px-3 py-2"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Detailed Description</label>
+                    <textarea id="pfDescription" rows="2" class="w-full border border-gray-300 rounded-xl px-3 py-2"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-daraz hover:bg-darazDark text-white font-extrabold py-3 rounded-xl text-sm shadow cursor-pointer">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Toast Banner -->
+    <div id="toastNotification" class="app-overlay fixed bottom-5 left-1/2 -translate-x-1/2 bg-amazonDark text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-2xl z-50 items-center gap-2 border border-white/15">
+        <i class="fa-solid fa-circle-check text-green-400"></i>
+        <span id="toastMessageText">Done</span>
+    </div>
+
+    <script>
+        (function () {
+            "use strict";
+
+            // =====================================================================
+            // 1. EMBEDDED DEFAULT STORE CONFIG & PRODUCTS
+            // =====================================================================
+            /* __STORE_DATA_START__ */
+            const EMBEDDED_CONFIG = {
+                storeName: "Smart Shopping",
+                storeSuffix: "PK",
+                whatsapp: "923433335740",
+                logoUrl: "",
+                deliveryFee: 200,
+                adminPin: "1234",
+                webhookUrl: "",
+                themePreset: "sunset"
+            };
+
+            const EMBEDDED_PRODUCTS = [
+                {
+                    id: "1",
+                    title: "Tan Marble Premium Tote Bag - Spacious Ladies Shoulder Handbag",
+                    category: "Ladies Bags",
+                    price: 1499,
+                    oldPrice: 2350,
+                    costPrice: 950,
+                    rating: 4.9,
+                    sold: 384,
+                    inStock: true,
+                    variants: ["Tan Marble", "Classic Espresso"],
+                    images: [
+                        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85",
+                        "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=85",
+                        "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=85"
+                    ],
+                    highlights: [
+                        "Elegant Tan Marble textured premium leatherette finish",
+                        "Spacious main compartment with smooth top zipper closure",
+                        "Strong dual shoulder straps ideal for university, office & daily wear",
+                        "Open parcel & inspect quality before paying the rider"
+                    ],
+                    description: "Carry your daily essentials in style with the Tan Marble Premium Tote Bag. Built with durable marble-grain PU leather, smooth zipper, and generous space for your tablet, cosmetics, and wallet."
+                },
+                {
+                    id: "2",
+                    title: "T900 Ultra Smart Watch Series 8 - Bluetooth Calling & Fitness",
+                    category: "Smart Watches",
+                    price: 2199,
+                    oldPrice: 3600,
+                    costPrice: 1450,
+                    rating: 4.8,
+                    sold: 512,
+                    inStock: true,
+                    variants: ["Orange Strap", "Midnight Black", "Silver Grey"],
+                    images: [
+                        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=85",
+                        "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=800&q=85"
+                    ],
+                    highlights: [
+                        "2.09-inch HD Infinite Display with customizable wallpapers",
+                        "Direct Bluetooth calling with built-in HD mic & speaker",
+                        "Heart rate, step counter, sleep & multi-sport tracking",
+                        "Works seamlessly with all Android & iPhone devices"
+                    ],
+                    description: "Factory-direct Ultra Smart Watch featuring crystal-clear Bluetooth calling, WhatsApp notifications, and long-lasting battery life at Pakistan's lowest wholesale rate."
+                },
+                {
+                    id: "3",
+                    title: "M10 Pro Wireless Bluetooth Earbuds with LED Power Bank Case",
+                    category: "Audio & Gadgets",
+                    price: 1299,
+                    oldPrice: 1999,
+                    costPrice: 800,
+                    rating: 4.7,
+                    sold: 690,
+                    inStock: true,
+                    variants: ["Matte Black"],
+                    images: [
+                        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=85",
+                        "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=800&q=85"
+                    ],
+                    highlights: [
+                        "9D Hi-Fi Stereo Deep Bass with noise isolation",
+                        "Digital LED battery indicator + emergency phone power bank",
+                        "Smart fingerprint touch controls for calls & music",
+                        "Sweat & splash resistant for workouts and travel"
+                    ],
+                    description: "Enjoy wireless freedom with rich bass and a heavy-duty charging case that displays exact battery percentage and doubles as an emergency mobile charger."
+                },
+                {
+                    id: "4",
+                    title: "Classic Men's Genuine Leather Bi-Fold Wallet - Gift Box Edition",
+                    category: "Men's Fashion",
+                    price: 899,
+                    oldPrice: 1450,
+                    costPrice: 520,
+                    rating: 4.9,
+                    sold: 275,
+                    inStock: true,
+                    variants: ["Dark Brown", "Jet Black"],
+                    images: [
+                        "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=85"
+                    ],
+                    highlights: [
+                        "Soft-grain durable genuine leather with fine stitching",
+                        "8 card slots, 2 cash compartments & clear ID window",
+                        "Slim, comfortable pocket fit",
+                        "Packed in a luxury gift box"
+                    ],
+                    description: "A sleek, long-lasting men's leather wallet crafted for everyday convenience and gifting."
+                }
+            ];
+            /* __STORE_DATA_END__ */
+
+            // =====================================================================
+            // 2. SAFE STATE & HELPERS
+            // =====================================================================
+            const FALLBACK_IMG = "https://placehold.co/600x600/f3f4f6/6b7280?text=Smart+Shopping+PK";
+
+            function safeJSONParse(key, fallback) {
+                try {
+                    const raw = localStorage.getItem(key);
+                    return raw ? JSON.parse(raw) : fallback;
+                } catch (e) {
+                    return fallback;
+                }
+            }
+
+            function escapeHTML(str) {
+                return String(str == null ? "" : str)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            function normalizeImages(p) {
+                let list = [];
+                if (Array.isArray(p.images)) {
+                    list = p.images.map(s => String(s || "").trim()).filter(Boolean);
+                }
+                if (list.length === 0 && p.img) {
+                    list = [String(p.img).trim()];
+                }
+                if (list.length === 0) {
+                    list = [FALLBACK_IMG];
+                }
+                p.images = list;
+                p.img = list[0];
+                return list;
+            }
+
+            let storeConfig = Object.assign({}, EMBEDDED_CONFIG, safeJSONParse("ssp_v5_config", {}));
+            const storedProducts = safeJSONParse("ssp_v5_products", null);
+            let products = (Array.isArray(storedProducts) && storedProducts.length > 0 ? storedProducts : EMBEDDED_PRODUCTS).map(item => {
+                const copy = Object.assign({}, item);
+                normalizeImages(copy);
+                return copy;
+            });
+
+            let cart = safeJSONParse("ssp_v5_cart", []);
+            let orders = safeJSONParse("ssp_v5_orders", []);
+
+            let activeCategory = "all";
+            let currentSearch = "";
+            let activeDetailProductId = null;
+            let selectedDetailVariant = "";
+            let detailQuantity = 1;
+            let lastConfirmedOrderId = "";
+
+            // Global image error fallback listener (capturing phase handles all <img> elements)
+            document.addEventListener("error", function (e) {
+                const target = e.target;
+                if (target && target.tagName === "IMG" && !target.dataset.fallbackApplied) {
+                    target.dataset.fallbackApplied = "1";
+                    target.src = FALLBACK_IMG;
+                }
+            }, true);
+
+            // =====================================================================
+            // 3. MODAL & OVERLAY CONTROLS
+            // =====================================================================
+            function openOverlay(id) {
+                const el = document.getElementById(id);
+                if (el) el.classList.add("is-open");
+            }
+
+            function closeOverlay(id) {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove("is-open");
+            }
+
+            let toastTimer = null;
+            function showToast(msg) {
+                const el = document.getElementById("toastNotification");
+                document.getElementById("toastMessageText").textContent = msg;
+                el.classList.add("is-open");
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    el.classList.remove("is-open");
+                }, 2600);
+            }
+
+            function copyTextToClipboard(text) {
+                const ta = document.createElement("textarea");
+                ta.value = text;
+                ta.style.position = "fixed";
+                ta.style.opacity = "0";
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+            }
+
+            // =====================================================================
+            // 4. BRANDING & NAVIGATION RENDERING
+            // =====================================================================
+            const THEME_PRESETS = {
+                sunset: { primary: "#f85606", dark: "#c2410c", header: "#0f172a", nav: "#1e293b", accent: "#fbbf24", bg: "#f8fafc" },
+                royal: { primary: "#4f46e5", dark: "#3730a3", header: "#1e1b4b", nav: "#312e81", accent: "#fbbf24", bg: "#f8fafc" },
+                emerald: { primary: "#059669", dark: "#047857", header: "#022c22", nav: "#064e3b", accent: "#fde047", bg: "#f6fdf9" },
+                crimson: { primary: "#e11d48", dark: "#be123c", header: "#18181b", nav: "#27272a", accent: "#facc15", bg: "#fafafa" }
+            };
+
+            function applyBrandTheme(presetKey) {
+                const t = THEME_PRESETS[presetKey] || THEME_PRESETS.sunset;
+                const root = document.documentElement;
+                root.style.setProperty("--brand-primary", t.primary);
+                root.style.setProperty("--brand-primary-dark", t.dark);
+                root.style.setProperty("--brand-header", t.header);
+                root.style.setProperty("--brand-nav", t.nav);
+                root.style.setProperty("--brand-accent", t.accent);
+                root.style.setProperty("--brand-bg", t.bg);
+                document.querySelectorAll(".theme-preset-btn").forEach(btn => {
+                    if (btn.dataset.themePreset === (presetKey || "sunset")) {
+                        btn.classList.add("border-daraz", "bg-orange-50/60");
+                    } else {
+                        btn.classList.remove("border-daraz", "bg-orange-50/60");
+                    }
+                });
+            }
+
+            function renderBranding() {
+                applyBrandTheme(storeConfig.themePreset || "sunset");
+                const sName = storeConfig.storeName || "Smart Shopping";
+                const sSuffix = storeConfig.storeSuffix !== undefined ? storeConfig.storeSuffix : "PK";
+                document.getElementById("uiStoreName").textContent = sName;
+                const suffixEl = document.getElementById("uiStoreSuffix");
+                suffixEl.textContent = sSuffix;
+                suffixEl.style.display = sSuffix ? "inline-block" : "none";
+                document.getElementById("drawerStoreName").textContent = `${sName} ${sSuffix}`.trim();
+                document.getElementById("footerBrandTitle").textContent = sName;
+
+                const waLink = `https://wa.me/${storeConfig.whatsapp}`;
+                document.getElementById("floatingWaBtn").href = waLink;
+                document.getElementById("drawerWaLink").href = waLink;
+                document.getElementById("footerWaNumber").textContent = storeConfig.whatsapp.replace(/^92/, "0");
+
+                const logoBox = document.getElementById("logoVisualBox");
+                if (storeConfig.logoUrl && storeConfig.logoUrl.trim() !== "") {
+                    logoBox.innerHTML = `<img src="${escapeHTML(storeConfig.logoUrl)}" alt="Logo" class="w-full h-full object-cover">`;
+                } else {
+                    logoBox.innerHTML = `
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M13 10l-2 4h3l-2 4" stroke="#ffd814"></path>
+                        </svg>`;
+                }
+            }
+
+            function renderCategoryNavigation() {
+                const cats = ["all", ...new Set(products.map(p => p.category))];
+
+                document.getElementById("headerCatSelect").innerHTML = cats.map(c =>
+                    `<option value="${escapeHTML(c)}" ${activeCategory === c ? "selected" : ""}>${c === "all" ? "All Categories" : escapeHTML(c)}</option>`
+                ).join("");
+
+                document.getElementById("categoryFilterBar").innerHTML = cats.map(c => {
+                    const label = c === "all" ? "All Products" : c;
+                    const cls = activeCategory === c
+                        ? "bg-daraz text-white shadow-2xs"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200";
+                    return `<button type="button" data-select-cat="${escapeHTML(c)}" class="px-3.5 py-1.5 rounded-lg transition whitespace-nowrap cursor-pointer ${cls}">${escapeHTML(label)}</button>`;
+                }).join("");
+
+                document.getElementById("drawerCategoriesList").innerHTML = cats.map(c => {
+                    const label = c === "all" ? "All Products" : c;
+                    return `<button type="button" data-select-cat="${escapeHTML(c)}" data-close-modal="slideMenuDrawer" class="w-full text-left px-2.5 py-2 rounded-lg hover:bg-orange-50 hover:text-daraz transition flex items-center justify-between cursor-pointer">
+                        <span class="pointer-events-none">${escapeHTML(label)}</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-400 pointer-events-none"></i>
+                    </button>`;
+                }).join("");
+            }
+
+            function filterByCategory(cat) {
+                activeCategory = cat;
+                renderCategoryNavigation();
+                if (activeDetailProductId) {
+                    goHomeView();
+                } else {
+                    renderCatalogGrid();
+                }
+            }
+
+            function handleSearch(query) {
+                currentSearch = String(query || "").trim().toLowerCase();
+                const dInput = document.getElementById("desktopSearchInput");
+                const mInput = document.getElementById("mobileSearchInput");
+                if (dInput && dInput.value !== query) dInput.value = query;
+                if (mInput && mInput.value !== query) mInput.value = query;
+                if (activeDetailProductId) {
+                    goHomeView();
+                } else {
+                    renderCatalogGrid();
+                }
+            }
+
+            function safeUpdateUrl(queryOrHash) {
+                try {
+                    if (window.location.protocol === "blob:" || window.location.protocol === "data:") {
+                        if (queryOrHash) window.location.hash = queryOrHash.replace(/^\?product=/, "product-");
+                        else if (window.location.hash) window.location.hash = "";
+                        return;
+                    }
+                    const nextUrl = queryOrHash ? `${window.location.pathname}${queryOrHash}` : window.location.pathname;
+                    window.history.replaceState({}, "", nextUrl);
+                } catch (e) {
+                    // Safely ignore history restrictions in sandboxed iframes
+                }
+            }
+
+            function goHomeView() {
+                activeDetailProductId = null;
+                document.getElementById("productDetailView").classList.add("hidden");
+                document.getElementById("storefrontCatalogView").classList.remove("hidden");
+                if (window.location.search.includes("product=") || window.location.hash.startsWith("#product-")) {
+                    safeUpdateUrl("");
+                }
+                renderCatalogGrid();
+            }
+
+            // =====================================================================
+            // 5. CATALOG GRID & PRODUCT DETAIL VIEW (NO INLINE ONCLICK STRINGS)
+            // =====================================================================
+            function buildProductCardHTML(p) {
+                const imgs = normalizeImages(p);
+                const discountPct = p.oldPrice > p.price ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+                const safeId = escapeHTML(p.id);
+                return `
+                <div class="bg-white rounded-2xl shadow-xs brand-card-hover border border-slate-200/80 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div data-open-product="${safeId}" class="relative aspect-square bg-slate-50 overflow-hidden cursor-pointer">
+                            <img src="${escapeHTML(imgs[0])}" alt="${escapeHTML(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 pointer-events-none">
+                            <div class="absolute top-2 left-2 flex flex-col gap-1 pointer-events-none">
+                                ${discountPct > 0 ? `<span class="bg-gradient-to-r from-daraz to-orange-500 text-white text-[10px] sm:text-[11px] font-black px-2 py-0.5 rounded-md shadow-xs">-${discountPct}% OFF</span>` : ""}
+                                <span class="bg-slate-900/80 backdrop-blur-xs text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md">Factory Rate</span>
+                            </div>
+                            ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-slate-900/75 text-white text-[10px] font-bold px-2 py-0.5 rounded-md backdrop-blur-xs pointer-events-none"><i class="fa-regular fa-images mr-0.5"></i>${imgs.length}</span>` : ""}
+                            ${!p.inStock ? `<div class="absolute inset-0 bg-black/55 flex items-center justify-center pointer-events-none"><span class="bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">OUT OF STOCK</span></div>` : ""}
+                        </div>
+                        <div class="p-3 sm:p-3.5">
+                            <div class="flex items-center justify-between gap-1">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-daraz/85">${escapeHTML(p.category)}</span>
+                                <span class="text-[10px] font-bold text-emerald-600"><i class="fa-solid fa-box-open"></i> Open Parcel</span>
+                            </div>
+                            <h3 data-open-product="${safeId}" class="font-bold text-xs sm:text-sm text-slate-900 line-clamp-2 cursor-pointer hover:text-daraz leading-snug mt-1 mb-2">
+                                ${escapeHTML(p.title)}
+                            </h3>
+                            <div class="flex items-baseline gap-1.5">
+                                <span class="text-base sm:text-lg font-black text-daraz">Rs. ${Number(p.price).toLocaleString()}</span>
+                                ${p.oldPrice > p.price ? `<span class="text-[11px] text-slate-400 line-through">Rs. ${Number(p.oldPrice).toLocaleString()}</span>` : ""}
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] sm:text-[11px] text-slate-500 mt-1.5 pt-1.5 border-t border-slate-100">
+                                <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> ${p.rating || 4.8}</span>
+                                <span class="font-medium">${p.sold || 95}+ verified orders</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-3 sm:px-3.5 pb-3 sm:pb-3.5 flex gap-1.5">
+                        <button type="button" ${!p.inStock ? "disabled" : ""} data-card-add-cart="${safeId}" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-bold py-2 rounded-xl text-[11px] sm:text-xs transition disabled:opacity-40 cursor-pointer">
+                            + Cart
+                        </button>
+                        <button type="button" ${!p.inStock ? "disabled" : ""} data-card-order-now="${safeId}" class="flex-1 bg-gradient-to-r from-daraz to-orange-500 hover:brightness-110 text-white font-extrabold py-2 rounded-xl text-[11px] sm:text-xs transition shadow-xs disabled:opacity-40 cursor-pointer">
+                            Order Now
+                        </button>
+                    </div>
+                </div>`;
+            }
+
+            function renderCatalogGrid() {
+                const sortMode = document.getElementById("catalogSortSelect").value;
+                let list = products.filter(p => {
+                    const catMatch = activeCategory === "all" || p.category === activeCategory;
+                    const searchMatch = p.title.toLowerCase().includes(currentSearch) ||
+                                        p.category.toLowerCase().includes(currentSearch);
+                    return catMatch && searchMatch;
+                });
+
+                if (sortMode === "low") list.sort((a, b) => a.price - b.price);
+                else if (sortMode === "high") list.sort((a, b) => b.price - a.price);
+
+                document.getElementById("itemsCountText").textContent = `${list.length} items`;
+                const grid = document.getElementById("mainProductsGrid");
+
+                if (list.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full bg-white rounded-2xl p-10 text-center border border-gray-100">
+                        <p class="font-bold text-gray-700 text-sm">No products matched your search.</p>
+                        <button type="button" data-action="reset-filters" class="mt-3 bg-daraz text-white text-xs font-bold px-4 py-2 rounded-lg cursor-pointer">Show All Products</button>
+                    </div>`;
+                    return;
+                }
+
+                grid.innerHTML = list.map(p => buildProductCardHTML(p)).join("");
+            }
+
+            function openProductDetailView(id) {
+                const p = products.find(x => String(x.id) === String(id));
+                if (!p) return goHomeView();
+
+                activeDetailProductId = String(p.id);
+                detailQuantity = 1;
+                document.getElementById("detailQtyValue").textContent = "1";
+
+                document.getElementById("storefrontCatalogView").classList.add("hidden");
+                document.getElementById("productDetailView").classList.remove("hidden");
+
+                safeUpdateUrl(`?product=${encodeURIComponent(p.id)}`);
+
+                // Gallery Images
+                const imgs = normalizeImages(p);
+                const mainImgEl = document.getElementById("mainDetailImg");
+                delete mainImgEl.dataset.fallbackApplied;
+                mainImgEl.src = imgs[0];
+
+                const thumbsContainer = document.getElementById("galleryThumbs");
+                thumbsContainer.innerHTML = imgs.map((src, i) => `
+                    <img src="${escapeHTML(src)}" data-thumb-index="${i}" alt="Product view ${i + 1}" class="detail-thumb w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-xl border-2 cursor-pointer shrink-0 transition bg-white ${i === 0 ? "border-daraz ring-2 ring-daraz/25" : "border-gray-200 hover:border-daraz"}">
+                `).join("");
+
+                const discountPct = p.oldPrice > p.price ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+                const discBadge = document.getElementById("detailDiscountBadge");
+                if (discountPct > 0) {
+                    discBadge.textContent = `-${discountPct}% OFF`;
+                    discBadge.classList.remove("hidden");
+                } else {
+                    discBadge.classList.add("hidden");
+                }
+
+                document.getElementById("detailBreadcrumbCat").textContent = p.category;
+                document.getElementById("detailCatBadge").textContent = p.category;
+                document.getElementById("detailTitle").textContent = p.title;
+                document.getElementById("detailRating").textContent = p.rating || 4.9;
+                document.getElementById("detailSold").textContent = p.sold || 250;
+                document.getElementById("detailPrice").textContent = `Rs. ${Number(p.price).toLocaleString()}`;
+                document.getElementById("detailOldPrice").textContent = p.oldPrice > p.price ? `Rs. ${Number(p.oldPrice).toLocaleString()}` : "";
+
+                // Variants
+                const variantsWrap = document.getElementById("detailVariantsWrap");
+                const variantsList = document.getElementById("detailVariantsList");
+                if (Array.isArray(p.variants) && p.variants.length > 0) {
+                    selectedDetailVariant = p.variants[0];
+                    variantsWrap.classList.remove("hidden");
+                    variantsList.innerHTML = p.variants.map((v, idx) => `
+                        <button type="button" data-select-variant="${escapeHTML(v)}" class="variant-pill px-3 py-1 rounded-lg text-xs font-bold border transition cursor-pointer ${idx === 0 ? "border-daraz bg-orange-50 text-daraz" : "border-gray-200 bg-white text-gray-700 hover:border-daraz"}">${escapeHTML(v)}</button>
+                    `).join("");
+                } else {
+                    selectedDetailVariant = "";
+                    variantsWrap.classList.add("hidden");
+                    variantsList.innerHTML = "";
+                }
+
+                const stockBadge = document.getElementById("detailStockBadge");
+                stockBadge.textContent = p.inStock ? "In Stock • Ready to Ship" : "Out of Stock";
+                stockBadge.className = p.inStock
+                    ? "bg-green-50 text-green-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full"
+                    : "bg-red-50 text-red-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full";
+
+                document.getElementById("detailOrderNowBtn").disabled = !p.inStock;
+                document.getElementById("detailAddCartBtn").disabled = !p.inStock;
+
+                // Keep specs collapsed initially so Related Products show immediately below
+                document.getElementById("collapsibleSpecsBody").classList.add("hidden");
+                document.getElementById("specsToggleLabel").innerHTML = `Show <i class="fa-solid fa-chevron-down"></i>`;
+
+                document.getElementById("detailHighlightsList").innerHTML = (p.highlights || []).map(h =>
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-1 text-xs"></i><span>${escapeHTML(h)}</span></li>`
+                ).join("");
+                document.getElementById("detailDescriptionText").textContent = p.description || "";
+
+                // Related & More Products Directly Below
+                const related = products.filter(item => String(item.id) !== String(p.id));
+                related.sort((a, b) => (a.category === p.category ? -1 : 1));
+                document.getElementById("relatedProductsGrid").innerHTML = related.map(item => buildProductCardHTML(item)).join("");
+
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            // =====================================================================
+            // 6. CART, SILENT ORDER SAVE, OFFICIAL RECEIPT & WHATSAPP CONFIRMATION
+            // =====================================================================
+            function updateCartCounter() {
+                const count = cart.reduce((sum, item) => sum + item.qty, 0);
+                document.getElementById("headerCartBadge").textContent = count;
+                localStorage.setItem("ssp_v5_cart", JSON.stringify(cart));
+            }
+
+            function addItemToCart(id, qty = 1, variant = "") {
+                const existing = cart.find(i => String(i.id) === String(id) && (i.variant || "") === (variant || ""));
+                if (existing) existing.qty += qty;
+                else cart.push({ id: String(id), qty, variant });
+                updateCartCounter();
+                showToast("Added to Cart 🛒");
+            }
+
+            function orderSingleProductCOD(id, qty = 1, variant = "") {
+                cart = [{ id: String(id), qty, variant }];
+                updateCartCounter();
+                openCartDrawer();
+            }
+
+            function openCartDrawer() {
+                document.getElementById("orderSuccessReceipt").classList.add("hidden");
+                renderCartDrawerItems();
+                openOverlay("cartDrawer");
+            }
+
+            function renderCartDrawerItems() {
+                const container = document.getElementById("drawerCartItems");
+                const billBox = document.getElementById("drawerBillBox");
+                const form = document.getElementById("nativeOrderForm");
+
+                if (cart.length === 0) {
+                    container.innerHTML = `<div class="text-center py-10 space-y-2">
+                        <i class="fa-solid fa-cart-shopping text-3xl text-gray-300"></i>
+                        <p class="text-xs font-bold text-gray-500">Your cart is empty.</p>
+                    </div>`;
+                    billBox.classList.add("hidden");
+                    form.classList.add("hidden");
+                    return;
+                }
+
+                billBox.classList.remove("hidden");
+                form.classList.remove("hidden");
+
+                let subtotal = 0;
+                container.innerHTML = cart.map((item, idx) => {
+                    const p = products.find(x => String(x.id) === String(item.id));
+                    if (!p) return "";
+                    const imgs = normalizeImages(p);
+                    subtotal += p.price * item.qty;
+                    return `
+                    <div class="flex items-center gap-3 bg-gray-50 p-2.5 rounded-xl border border-gray-200">
+                        <img src="${escapeHTML(imgs[0])}" class="w-12 h-12 rounded-lg object-cover shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <div class="text-xs font-bold text-gray-900 truncate">${escapeHTML(p.title)}</div>
+                            ${item.variant ? `<div class="text-[10px] font-semibold text-gray-500">Option: ${escapeHTML(item.variant)}</div>` : ""}
+                            <div class="text-xs font-black text-daraz">Rs. ${(p.price * item.qty).toLocaleString()}</div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <button type="button" data-cart-qty="${idx}" data-delta="-1" class="w-6 h-6 rounded bg-white border border-gray-300 font-bold text-xs cursor-pointer">-</button>
+                                <span class="text-xs font-bold">${item.qty}</span>
+                                <button type="button" data-cart-qty="${idx}" data-delta="1" class="w-6 h-6 rounded bg-white border border-gray-300 font-bold text-xs cursor-pointer">+</button>
+                            </div>
+                        </div>
+                        <button type="button" data-cart-qty="${idx}" data-delta="-999" class="text-gray-400 hover:text-red-500 p-1 cursor-pointer">
+                            <i class="fa-solid fa-trash-can text-xs pointer-events-none"></i>
+                        </button>
+                    </div>`;
+                }).join("");
+
+                const del = Number(storeConfig.deliveryFee) || 0;
+                const total = subtotal + del;
+                document.getElementById("billSub").textContent = `Rs. ${subtotal.toLocaleString()}`;
+                document.getElementById("billDel").textContent = del === 0 ? "FREE" : `Rs. ${del}`;
+                document.getElementById("billTotal").textContent = `Rs. ${total.toLocaleString()}`;
+            }
+
+            function processNativeCODOrder(e) {
+                e.preventDefault();
+                if (cart.length === 0) return;
+
+                const name = document.getElementById("custFullName").value.trim();
+                const phone = document.getElementById("custMobile").value.trim();
+                const city = document.getElementById("custCityName").value.trim();
+                const address = document.getElementById("custFullAddress").value.trim();
+
+                let subtotal = 0;
+                const lines = [];
+                cart.forEach(item => {
+                    const p = products.find(x => String(x.id) === String(item.id));
+                    if (p) {
+                        subtotal += p.price * item.qty;
+                        const varTxt = item.variant ? ` [${item.variant}]` : "";
+                        lines.push(`• ${p.title}${varTxt} (Qty: ${item.qty}) — Rs. ${(p.price * item.qty).toLocaleString()}`);
+                    }
+                });
+
+                const del = Number(storeConfig.deliveryFee) || 0;
+                const grandTotal = subtotal + del;
+                const orderId = "SSP-" + Math.floor(1000 + Math.random() * 9000);
+                lastConfirmedOrderId = orderId;
+
+                const orderObj = {
+                    id: orderId,
+                    name,
+                    phone,
+                    city,
+                    address,
+                    items: lines,
+                    total: grandTotal,
+                    status: "Confirmed",
+                    date: new Date().toLocaleString()
+                };
+
+                // 1. Save silently to Admin Panel orders database
+                orders.unshift(orderObj);
+                localStorage.setItem("ssp_v5_orders", JSON.stringify(orders));
+
+                // 2. Silent Behind-the-Scenes Cloud / Google Sheet Webhook Sync (if configured)
+                if (storeConfig.webhookUrl && storeConfig.webhookUrl.trim().startsWith("http")) {
+                    try {
+                        fetch(storeConfig.webhookUrl.trim(), {
+                            method: "POST",
+                            mode: "no-cors",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(orderObj)
+                        }).catch(() => {});
+                    } catch (err) {}
+                }
+
+                // 3. Formatted WhatsApp slip link
+                const waText =
+`*NEW COD ORDER — ${storeConfig.storeName} ${storeConfig.storeSuffix || ""}* 🛍️
+*Order ID:* ${orderId}
+━━━━━━━━━━━━━━━━━━
+${lines.join("\n")}
+*Delivery:* Rs. ${del}
+*Total COD Amount:* Rs. ${grandTotal.toLocaleString()}
+━━━━━━━━━━━━━━━━━━
+*Customer Name:* ${name}
+*Mobile:* ${phone}
+*City:* ${city}
+*Address:* ${address}
+━━━━━━━━━━━━━━━━━━
+*(Open Parcel Before Payment)*`;
+
+                const waUrl = `https://wa.me/${storeConfig.whatsapp}?text=${encodeURIComponent(waText)}`;
+
+                // 4. Show authentic, official on-site Order Confirmed Receipt
+                cart = [];
+                updateCartCounter();
+                document.getElementById("drawerCartItems").innerHTML = "";
+                document.getElementById("drawerBillBox").classList.add("hidden");
+                document.getElementById("nativeOrderForm").classList.add("hidden");
+                document.getElementById("receiptOrderId").textContent = orderId;
+                document.getElementById("receiptItemsList").innerHTML = lines.map(l => `<div>${escapeHTML(l)}</div>`).join("");
+                document.getElementById("receiptTotalAmount").textContent = `Rs. ${grandTotal.toLocaleString()}`;
+                document.getElementById("receiptOptionalWaBtn").href = waUrl;
+                document.getElementById("orderSuccessReceipt").classList.remove("hidden");
+                showToast("✅ Order Confirmed Successfully!");
+            }
+
+            // =====================================================================
+            // 7. ORDER TRACKING
+            // =====================================================================
+            function searchOrderTracking() {
+                const q = document.getElementById("trackInputField").value.trim().toLowerCase();
+                const box = document.getElementById("trackResultsBox");
+                if (!q) return;
+
+                const found = orders.filter(o => o.id.toLowerCase() === q || o.phone.includes(q));
+                if (found.length === 0) {
+                    box.innerHTML = `<div class="bg-red-50 text-red-700 text-xs p-3 rounded-xl border border-red-200">No order found for this ID or Phone Number.</div>`;
+                    return;
+                }
+
+                box.innerHTML = found.map(o => `
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-black text-daraz text-sm">${escapeHTML(o.id)}</span>
+                            <span class="bg-orange-100 text-daraz font-bold px-2.5 py-0.5 rounded-full">${escapeHTML(o.status)}</span>
+                        </div>
+                        <div><strong>Name:</strong> ${escapeHTML(o.name)} (${escapeHTML(o.city)})</div>
+                        <div><strong>Total COD:</strong> Rs. ${Number(o.total).toLocaleString()}</div>
+                        <div class="text-[11px] text-gray-500">${(o.items || []).map(escapeHTML).join("<br>")}</div>
+                    </div>
+                `).join("");
+            }
+
+            // =====================================================================
+            // 8. AI SHOPPING ASSISTANT (ENGLISH & URDU)
+            // =====================================================================
+            function toggleAIChat() {
+                const box = document.getElementById("aiChatBox");
+                if (box.classList.contains("is-open")) {
+                    box.classList.remove("is-open");
+                } else {
+                    box.classList.add("is-open");
+                    document.getElementById("aiUserInput").focus();
+                }
+            }
+
+            async function submitAIChat(questionText) {
+                const q = questionText.trim();
+                if (!q) return;
+
+                const feed = document.getElementById("aiMessagesFeed");
+                feed.innerHTML += `<div class="bg-daraz text-white p-2.5 rounded-2xl rounded-tr-none ml-auto max-w-[85%] shadow-2xs">${escapeHTML(q)}</div>`;
+                const loadId = "ai-wait-" + Date.now();
+                feed.innerHTML += `<div id="${loadId}" class="bg-white p-2.5 rounded-2xl rounded-tl-none border border-gray-100 text-gray-400 italic max-w-[80%]">Typing...</div>`;
+                feed.scrollTop = feed.scrollHeight;
+
+                const catalogContext = products.map(p =>
+                    `- ${p.title} | Category: ${p.category} | Price: Rs. ${p.price} (Was Rs. ${p.oldPrice}) | Stock: ${p.inStock ? "Available" : "Out of Stock"} | Details: ${(p.highlights || []).join(", ")}`
+                ).join("\n");
+
+                const sysPrompt = `You are the expert AI Sales & Customer Support Assistant for "${storeConfig.storeName} ${storeConfig.storeSuffix || ""}".
+Store Policies & Facts:
+- Lowest Factory & Wholesale Rates in Pakistan.
+- Cash on Delivery (COD) available nationwide across Pakistan (2-4 working days).
+- Open Parcel Before Payment (ادائیگی سے پہلے پارسل کھول کر چیک کرنے کی سہولت موجود ہے).
+- 7-Day Easy Return & Exchange Policy if defective or wrong item.
+- Delivery Charges: Rs. ${storeConfig.deliveryFee}.
+- WhatsApp Support: ${storeConfig.whatsapp.replace(/^92/, "0")}.
+Live Store Catalog:
+${catalogContext}
+
+Instructions:
+- Answer ANY question accurately, politely, and persuasively in the user's language (English, Roman Urdu, or Urdu).
+- Recommend matching items with exact Rs. prices from the Live Store Catalog.`;
+
+                try {
+                    const answer = await callGeminiAPI(sysPrompt, q);
+                    const waitEl = document.getElementById(loadId);
+                    if (waitEl) {
+                        waitEl.outerHTML = `<div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-2xs border border-gray-100 text-gray-800 max-w-[88%] whitespace-pre-line">${escapeHTML(answer)}</div>`;
+                    }
+                } catch (err) {
+                    const lower = q.toLowerCase();
+                    let fallback = `Ji bilkul! Humare store par Cash on Delivery aur Open Parcel Before Payment (ادائیگی سے پہلے پارسل کھول کر چیک کرنے کی سہولت) موجود ہے، aur 7 دن کی واپسی پالیسی بھی ہے۔ Delivery charges Rs. ${storeConfig.deliveryFee} hain. Direct order ke liye kisi bhi product par Order Now par click karein ya WhatsApp (${storeConfig.whatsapp.replace(/^92/, "0")}) par rabta karein!`;
+                    const matchedProd = products.find(p => lower.includes(p.category.toLowerCase()) || p.title.toLowerCase().split(" ").some(w => w.length > 3 && lower.includes(w)));
+                    if (matchedProd) {
+                        fallback = `${matchedProd.title} sirf Rs. ${Number(matchedProd.price).toLocaleString()} (Factory Wholesale Rate) mein available hai! Is par Open Parcel Before Payment aur Cash on Delivery ki sahulat maujood hai.`;
+                    }
+                    const waitEl = document.getElementById(loadId);
+                    if (waitEl) {
+                        waitEl.outerHTML = `<div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-2xs border border-gray-100 text-gray-800 max-w-[88%]">${escapeHTML(fallback)}</div>`;
+                    }
+                }
+                feed.scrollTop = feed.scrollHeight;
+            }
+
+            // =====================================================================
+            // 9. ZERO-CODE OWNER ADMIN PANEL
+            // =====================================================================
+            let logoTapCounter = 0;
+            let logoTapTimeout = null;
+            function handleLogoTripleClick() {
+                logoTapCounter++;
+                clearTimeout(logoTapTimeout);
+                logoTapTimeout = setTimeout(() => { logoTapCounter = 0; }, 700);
+                if (logoTapCounter >= 3) {
+                    logoTapCounter = 0;
+                    openAdminPanel();
+                }
+            }
+
+            function openAdminPanel() {
+                openOverlay("adminPanelModal");
+                document.getElementById("adminPinField").focus();
+            }
+
+            function unlockAdminPanel() {
+                const pin = document.getElementById("adminPinField").value;
+                if (pin === storeConfig.adminPin) {
+                    document.getElementById("adminPinScreen").classList.add("hidden");
+                    const dash = document.getElementById("adminDashboardArea");
+                    dash.classList.remove("hidden");
+                    dash.classList.add("flex");
+                    refreshAdminUI();
+                } else {
+                    showToast("❌ Incorrect Admin PIN");
+                }
+            }
+
+            function switchAdminTab(paneId) {
+                document.querySelectorAll(".adm-pane").forEach(p => p.classList.add("hidden"));
+                document.getElementById(paneId).classList.remove("hidden");
+                document.querySelectorAll(".adm-tab").forEach(btn => {
+                    if (btn.dataset.adminTab === paneId) {
+                        btn.className = "adm-tab bg-amazonDark text-white px-3.5 py-2 rounded-lg whitespace-nowrap cursor-pointer";
+                    } else {
+                        btn.className = "adm-tab bg-white text-gray-700 px-3.5 py-2 rounded-lg whitespace-nowrap border border-gray-200 cursor-pointer";
+                    }
+                });
+                refreshAdminUI();
+            }
+
+            function refreshAdminUI() {
+                document.getElementById("admOrderCount").textContent = orders.length;
+
+                document.getElementById("cfgStoreName").value = storeConfig.storeName || "Smart Shopping";
+                document.getElementById("cfgStoreSuffix").value = storeConfig.storeSuffix !== undefined ? storeConfig.storeSuffix : "PK";
+                document.getElementById("cfgWaNumber").value = storeConfig.whatsapp || "923433335740";
+                document.getElementById("cfgLogoUrl").value = storeConfig.logoUrl || "";
+                document.getElementById("cfgDeliveryFee").value = storeConfig.deliveryFee;
+                document.getElementById("cfgAdminPin").value = storeConfig.adminPin;
+                document.getElementById("cfgWebhookUrl").value = storeConfig.webhookUrl || "";
+
+                const rowsBox = document.getElementById("adminProductsRows");
+                rowsBox.innerHTML = products.map((p, idx) => {
+                    const imgs = normalizeImages(p);
+                    const safeId = escapeHTML(p.id);
+                    return `
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5">
+                        <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 shrink-0">
+                                <button type="button" data-move-prod="${idx}" data-dir="-1" ${idx === 0 ? "disabled" : ""} class="w-6 h-6 rounded bg-white border border-gray-300 hover:bg-gray-100 text-[10px] disabled:opacity-30 cursor-pointer" title="Move Up">
+                                    <i class="fa-solid fa-arrow-up pointer-events-none"></i>
+                                </button>
+                                <button type="button" data-move-prod="${idx}" data-dir="1" ${idx === products.length - 1 ? "disabled" : ""} class="w-6 h-6 rounded bg-white border border-gray-300 hover:bg-gray-100 text-[10px] disabled:opacity-30 cursor-pointer" title="Move Down">
+                                    <i class="fa-solid fa-arrow-down pointer-events-none"></i>
+                                </button>
+                            </div>
+
+                            <img src="${escapeHTML(imgs[0])}" class="w-12 h-12 rounded-lg object-cover shrink-0 border border-gray-200">
+                            <div class="min-w-0">
+                                <div class="font-bold text-xs text-gray-900 truncate">${escapeHTML(p.title)}</div>
+                                <div class="text-[11px] text-gray-500">
+                                    <span class="text-daraz font-extrabold">Rs. ${Number(p.price).toLocaleString()}</span>
+                                    ${p.costPrice ? `• Cost: Rs. ${p.costPrice} (<span class="text-green-600 font-bold">Profit: Rs. ${p.price - p.costPrice}</span>)` : ""}
+                                    • ${imgs.length} img(s)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-1.5 text-xs shrink-0">
+                            <button type="button" data-copy-ad-link="${safeId}" class="bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-2.5 py-1.5 rounded-lg font-bold cursor-pointer">
+                                <i class="fa-solid fa-link mr-1 pointer-events-none"></i> Copy Ad Link
+                            </button>
+                            <button type="button" data-edit-prod="${safeId}" class="bg-amazonNav hover:bg-amazonDark text-white px-2.5 py-1.5 rounded-lg font-bold cursor-pointer" title="Edit Product">
+                                <i class="fa-solid fa-pen pointer-events-none"></i>
+                            </button>
+                            <button type="button" data-del-prod="${idx}" class="bg-red-600 hover:bg-red-700 text-white px-2.5 py-1.5 rounded-lg font-bold cursor-pointer" title="Delete">
+                                <i class="fa-solid fa-trash pointer-events-none"></i>
+                            </button>
+                        </div>
+                    </div>`;
+                }).join("");
+
+                const ordList = document.getElementById("adminOrdersListBox");
+                if (orders.length === 0) {
+                    ordList.innerHTML = `<p class="text-center text-xs text-gray-400 py-8">No orders received yet.</p>`;
+                } else {
+                    ordList.innerHTML = orders.map((o, idx) => `
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200 space-y-2 text-xs">
+                            <div class="flex flex-wrap justify-between items-center gap-2">
+                                <div>
+                                    <span class="font-black text-sm text-daraz">${escapeHTML(o.id)}</span>
+                                    <span class="text-gray-400 ml-2">${escapeHTML(o.date)}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" data-copy-slip="${idx}" class="bg-amazonDark text-white px-2.5 py-1 rounded-lg font-bold text-[11px] cursor-pointer">
+                                        <i class="fa-regular fa-copy mr-1 pointer-events-none"></i> Copy Courier Slip
+                                    </button>
+                                    <select data-order-status="${idx}" class="bg-white border border-gray-300 rounded-lg px-2 py-1 font-bold text-xs cursor-pointer">
+                                        ${["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled"].map(s => `<option value="${s}" ${o.status === s ? "selected" : ""}>${s}</option>`).join("")}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-lg border border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div>
+                                    <div><strong>Name:</strong> ${escapeHTML(o.name)}</div>
+                                    <div><strong>Phone:</strong> ${escapeHTML(o.phone)}</div>
+                                    <div><strong>City:</strong> ${escapeHTML(o.city)}</div>
+                                    <div><strong>Address:</strong> ${escapeHTML(o.address)}</div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-600">${(o.items || []).map(escapeHTML).join("<br>")}</div>
+                                    <div class="font-black text-daraz mt-1">COD Total: Rs. ${Number(o.total).toLocaleString()}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join("");
+                }
+            }
+
+            function persistProducts() {
+                localStorage.setItem("ssp_v5_products", JSON.stringify(products));
+                renderCategoryNavigation();
+                renderCatalogGrid();
+                if (activeDetailProductId && products.some(p => String(p.id) === String(activeDetailProductId))) {
+                    openProductDetailView(activeDetailProductId);
+                }
+                refreshAdminUI();
+            }
+
+            function openProductFormModal(id = null) {
+                const p = id ? products.find(x => String(x.id) === String(id)) : null;
+                if (p) normalizeImages(p);
+                document.getElementById("prodFormHeading").textContent = p ? "Edit Product" : "Add New Product";
+                document.getElementById("pfId").value = p ? p.id : "";
+                document.getElementById("pfTitle").value = p ? p.title : "";
+                document.getElementById("pfCategory").value = p ? p.category : "Ladies Bags";
+                document.getElementById("pfInStock").value = p ? String(p.inStock) : "true";
+                document.getElementById("pfPrice").value = p ? p.price : "";
+                document.getElementById("pfOldPrice").value = p ? p.oldPrice : "";
+                document.getElementById("pfCostPrice").value = p ? (p.costPrice || "") : "";
+                document.getElementById("pfVariants").value = p && Array.isArray(p.variants) ? p.variants.join(", ") : "";
+                document.getElementById("pfImagesList").value = p ? p.images.join("\n") : "";
+                document.getElementById("pfImgCountBadge").textContent = p ? `${p.images.length} image(s)` : "";
+                document.getElementById("pfHighlights").value = p ? (p.highlights || []).join("\n") : "";
+                document.getElementById("pfDescription").value = p ? (p.description || "") : "";
+                openOverlay("productFormModal");
+            }
+
+            function compressImageFile(file, maxDim = 900, quality = 0.8) {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            const canvas = document.createElement("canvas");
+                            let w = img.width;
+                            let h = img.height;
+                            if (w > maxDim || h > maxDim) {
+                                if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
+                                else { w = Math.round((w * maxDim) / h); h = maxDim; }
+                            }
+                            canvas.width = w;
+                            canvas.height = h;
+                            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+                            resolve(canvas.toDataURL("image/jpeg", quality));
+                        };
+                        img.onerror = () => resolve(ev.target.result);
+                        img.src = ev.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            async function executeAIResellerImport() {
+                const raw = document.getElementById("aiSupplierRawText").value.trim();
+                const cost = Number(document.getElementById("aiCostInput").value) || 0;
+                const profit = Number(document.getElementById("aiProfitInput").value) || 550;
+                if (!raw) return showToast("Paste supplier product text first!");
+
+                const btn = document.getElementById("runAiImportBtn");
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> AI Extracting...`;
+
+                const prompt = `Extract a clean Pakistani e-commerce listing from this raw AR Dropshipping / Markaz text:
+"${raw}"
+Supplier Cost: Rs. ${cost}, Target Profit: Rs. ${profit}.
+Return JSON with keys: title, category, salePrice (number), oldPrice (number), highlights (array of 4 short strings), description (2 concise sentences).`;
+
+                try {
+                    const res = await callGeminiJSON(prompt);
+                    document.getElementById("aiOutTitle").value = res.title || "";
+                    document.getElementById("aiOutCat").value = res.category || "Trending";
+                    document.getElementById("aiOutPrice").value = res.salePrice || (cost + profit);
+                    document.getElementById("aiOutOldPrice").value = res.oldPrice || Math.round((cost + profit) * 1.35);
+                    document.getElementById("aiOutHighlights").value = (res.highlights || []).join("\n");
+                    document.getElementById("aiOutDesc").value = res.description || "";
+                    showToast("✨ AI Listing Ready!");
+                } catch (err) {
+                    const lines = raw.split("\n").map(l => l.trim()).filter(Boolean);
+                    document.getElementById("aiOutTitle").value = lines[0] || "Premium Product";
+                    document.getElementById("aiOutCat").value = "Trending";
+                    document.getElementById("aiOutPrice").value = cost > 0 ? cost + profit : 1499;
+                    document.getElementById("aiOutOldPrice").value = Math.round(Number(document.getElementById("aiOutPrice").value) * 1.35);
+                    document.getElementById("aiOutHighlights").value = lines.slice(1, 5).join("\n") || "Premium quality\nOpen parcel before payment";
+                    document.getElementById("aiOutDesc").value = raw.slice(0, 220);
+                    showToast("Listing Prepared! Click Publish.");
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-sparkles pointer-events-none"></i> <span class="pointer-events-none">AI Extract & Optimize Product</span>`;
+                }
+            }
+
+            function exportOrdersCSV() {
+                if (orders.length === 0) return showToast("No orders to export");
+                const headers = ["Order ID", "Date", "Customer Name", "Phone", "City", "Address", "Items", "Total COD", "Status"];
+                const rows = orders.map(o => [
+                    o.id, o.date, o.name, o.phone, o.city,
+                    `"${(o.address || "").replace(/"/g, '""')}"`,
+                    `"${(o.items || []).join(" | ").replace(/"/g, '""')}"`,
+                    o.total, o.status
+                ].join(","));
+                const csv = [headers.join(","), ...rows].join("\n");
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+                a.download = `SmartShoppingPK-Orders-${new Date().toISOString().slice(0, 10)}.csv`;
+                a.click();
+                showToast("📊 CSV Exported!");
+            }
+
+            function downloadSelfContainedHTML() {
+                let fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+                const replacementBlock = `/* __STORE_DATA_START__ */\n            const EMBEDDED_CONFIG = ${JSON.stringify(storeConfig, null, 4)};\n\n            const EMBEDDED_PRODUCTS = ${JSON.stringify(products, null, 4)};\n            /* __STORE_DATA_END__ */`;
+                fullHtml = fullHtml.replace(/\/\* __STORE_DATA_START__ \*\/[\s\S]*?\/\* __STORE_DATA_END__ \*\//, replacementBlock);
+
+                const blob = new Blob([fullHtml], { type: "text/html" });
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = "index.html";
+                a.click();
+                showToast("⬇️ Updated index.html Downloaded!");
+            }
+
+            // =====================================================================
+            // 10. GEMINI API HELPERS
+            // =====================================================================
+            async function fetchGeminiWithBackoff(url, options, retries = 3, delay = 1000) {
+                for (let i = 0; i < retries; i++) {
+                    const res = await fetch(url, options);
+                    if (res.ok) return await res.json();
+                    if (i < retries - 1) await new Promise(r => setTimeout(r, delay * Math.pow(2, i)));
+                }
+                throw new Error("API error");
+            }
+
+            async function callGeminiAPI(systemInstruction, userText) {
+                const apiKey = "";
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                const data = await fetchGeminiWithBackoff(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: userText }] }],
+                        systemInstruction: { parts: [{ text: systemInstruction }] }
+                    })
+                });
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "How can I help you today?";
+            }
+
+            async function callGeminiJSON(prompt) {
+                const apiKey = "";
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                const data = await fetchGeminiWithBackoff(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        generationConfig: {
+                            responseMimeType: "application/json",
+                            responseSchema: {
+                                type: "OBJECT",
+                                properties: {
+                                    title: { type: "STRING" },
+                                    category: { type: "STRING" },
+                                    salePrice: { type: "NUMBER" },
+                                    oldPrice: { type: "NUMBER" },
+                                    highlights: { type: "ARRAY", items: { type: "STRING" } },
+                                    description: { type: "STRING" }
+                                }
+                            }
+                        }
+                    })
+                });
+                return JSON.parse(data.candidates?.[0]?.content?.parts?.[0]?.text);
+            }
+
+            // =====================================================================
+            // 11. UNIFIED EVENT DELEGATION (100% RELIABLE CLICK & FORM HANDLING)
+            // =====================================================================
+            document.addEventListener("click", function (e) {
+                // 1. Close modal/overlay triggers
+                const closeTarget = e.target.closest("[data-close-modal]");
+                if (closeTarget) {
+                    closeOverlay(closeTarget.getAttribute("data-close-modal"));
+                }
+
+                // 2. Named UI Actions
+                const actionEl = e.target.closest("[data-action]");
+                if (actionEl) {
+                    const act = actionEl.getAttribute("data-action");
+                    if (act === "open-menu") openOverlay("slideMenuDrawer");
+                    else if (act === "logo-tap") handleLogoTripleClick();
+                    else if (act === "go-home") goHomeView();
+                    else if (act === "open-cart") openCartDrawer();
+                    else if (act === "open-track") openOverlay("trackModal");
+                    else if (act === "open-policy") openOverlay("policyModal");
+                    else if (act === "open-admin") openAdminPanel();
+                    else if (act === "toggle-ai") toggleAIChat();
+                    else if (act === "reset-filters") { filterByCategory("all"); handleSearch(""); }
+                    else if (act === "zoom-detail-img") {
+                        const zoomEl = document.getElementById("lightboxZoomImg");
+                        delete zoomEl.dataset.fallbackApplied;
+                        zoomEl.src = document.getElementById("mainDetailImg").src;
+                        openOverlay("imageLightboxModal");
+                    }
+                    else if (act === "detail-qty-minus") {
+                        detailQuantity = Math.max(1, detailQuantity - 1);
+                        document.getElementById("detailQtyValue").textContent = detailQuantity;
+                    }
+                    else if (act === "detail-qty-plus") {
+                        detailQuantity += 1;
+                        document.getElementById("detailQtyValue").textContent = detailQuantity;
+                    }
+                    else if (act === "detail-order-now" && activeDetailProductId) {
+                        orderSingleProductCOD(activeDetailProductId, detailQuantity, selectedDetailVariant);
+                    }
+                    else if (act === "detail-add-cart" && activeDetailProductId) {
+                        addItemToCart(activeDetailProductId, detailQuantity, selectedDetailVariant);
+                    }
+                    else if (act === "toggle-specs") {
+                        const body = document.getElementById("collapsibleSpecsBody");
+                        const label = document.getElementById("specsToggleLabel");
+                        if (body.classList.contains("hidden")) {
+                            body.classList.remove("hidden");
+                            label.innerHTML = `Hide <i class="fa-solid fa-chevron-up"></i>`;
+                        } else {
+                            body.classList.add("hidden");
+                            label.innerHTML = `Show <i class="fa-solid fa-chevron-down"></i>`;
+                        }
+                    }
+                    else if (act === "track-from-receipt") {
+                        closeOverlay("cartDrawer");
+                        document.getElementById("trackInputField").value = lastConfirmedOrderId;
+                        openOverlay("trackModal");
+                        searchOrderTracking();
+                    }
+                    else if (act === "search-track") searchOrderTracking();
+                    else if (act === "unlock-admin") unlockAdminPanel();
+                    else if (act === "open-new-product") openProductFormModal(null);
+                    else if (act === "run-ai-import") executeAIResellerImport();
+                    else if (act === "export-csv") exportOrdersCSV();
+                    else if (act === "download-html") downloadSelfContainedHTML();
+                    else if (act === "copy-gas-script") {
+                        const scriptCode = `function doPost(e) {\n  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();\n  var data = JSON.parse(e.postData.contents);\n  if (sheet.getLastRow() === 0) {\n    sheet.appendRow(["Order ID", "Date", "Name", "Phone", "City", "Address", "Items", "Total COD", "Status"]);\n  }\n  sheet.appendRow([data.id, data.date, data.name, data.phone, data.city, data.address, (data.items || []).join(" | "), data.total, data.status]);\n  return ContentService.createTextOutput(JSON.stringify({result: "success"})).setMimeType(ContentService.MimeType.JSON);\n}`;
+                        copyTextToClipboard(scriptCode);
+                        showToast("📋 Google Apps Script Copied!");
+                    }
+                    return;
+                }
+
+                // 3. Category Filter Selection
+                const catEl = e.target.closest("[data-select-cat]");
+                if (catEl) {
+                    filterByCategory(catEl.getAttribute("data-select-cat"));
+                    return;
+                }
+
+                // 4. Open Product Detail View
+                const openProdEl = e.target.closest("[data-open-product]");
+                if (openProdEl) {
+                    openProductDetailView(openProdEl.getAttribute("data-open-product"));
+                    return;
+                }
+
+                // 5. Card Add to Cart / Order Now
+                const cardAddEl = e.target.closest("[data-card-add-cart]");
+                if (cardAddEl) {
+                    addItemToCart(cardAddEl.getAttribute("data-card-add-cart"), 1);
+                    return;
+                }
+                const cardOrderEl = e.target.closest("[data-card-order-now]");
+                if (cardOrderEl) {
+                    orderSingleProductCOD(cardOrderEl.getAttribute("data-card-order-now"), 1);
+                    return;
+                }
+
+                // 6. Gallery Thumbnail Switch
+                const thumbEl = e.target.closest("[data-thumb-index]");
+                if (thumbEl) {
+                    const mainImgEl = document.getElementById("mainDetailImg");
+                    delete mainImgEl.dataset.fallbackApplied;
+                    mainImgEl.src = thumbEl.src;
+                    document.querySelectorAll(".detail-thumb").forEach(t => {
+                        t.classList.remove("border-daraz", "ring-2", "ring-daraz/25");
+                        t.classList.add("border-gray-200");
+                    });
+                    thumbEl.classList.remove("border-gray-200");
+                    thumbEl.classList.add("border-daraz", "ring-2", "ring-daraz/25");
+                    return;
+                }
+
+                // 7. Variant Pill Switch
+                const varEl = e.target.closest("[data-select-variant]");
+                if (varEl) {
+                    selectedDetailVariant = varEl.getAttribute("data-select-variant");
+                    document.querySelectorAll(".variant-pill").forEach(b => {
+                        b.className = "variant-pill px-3 py-1 rounded-lg text-xs font-bold border transition cursor-pointer border-gray-200 bg-white text-gray-700 hover:border-daraz";
+                    });
+                    varEl.className = "variant-pill px-3 py-1 rounded-lg text-xs font-bold border transition cursor-pointer border-daraz bg-orange-50 text-daraz";
+                    return;
+                }
+
+                // 8. Cart Drawer Quantity Stepper
+                const cartQtyEl = e.target.closest("[data-cart-qty]");
+                if (cartQtyEl) {
+                    const idx = Number(cartQtyEl.getAttribute("data-cart-qty"));
+                    const delta = Number(cartQtyEl.getAttribute("data-delta"));
+                    cart[idx].qty += delta;
+                    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+                    updateCartCounter();
+                    renderCartDrawerItems();
+                    return;
+                }
+
+                // 9. AI Quick Question Chip
+                const aiQuickEl = e.target.closest("[data-ai-quick]");
+                if (aiQuickEl) {
+                    submitAIChat(aiQuickEl.getAttribute("data-ai-quick"));
+                    return;
+                }
+
+                // 10. Admin Tabs & Product/Order Controls
+                const admTabEl = e.target.closest("[data-admin-tab]");
+                if (admTabEl) {
+                    switchAdminTab(admTabEl.getAttribute("data-admin-tab"));
+                    return;
+                }
+
+                const moveProdEl = e.target.closest("[data-move-prod]");
+                if (moveProdEl) {
+                    const idx = Number(moveProdEl.getAttribute("data-move-prod"));
+                    const dir = Number(moveProdEl.getAttribute("data-dir"));
+                    const targetIdx = idx + dir;
+                    if (targetIdx >= 0 && targetIdx < products.length) {
+                        const temp = products[idx];
+                        products[idx] = products[targetIdx];
+                        products[targetIdx] = temp;
+                        persistProducts();
+                        showToast("Product order updated");
+                    }
+                    return;
+                }
+
+                const copyAdEl = e.target.closest("[data-copy-ad-link]");
+                if (copyAdEl) {
+                    const pid = copyAdEl.getAttribute("data-copy-ad-link");
+                    const baseUrl = window.location.origin + window.location.pathname;
+                    copyTextToClipboard(`${baseUrl}?product=${encodeURIComponent(pid)}`);
+                    showToast("🔗 Meta Carousel Ad Link Copied!");
+                    return;
+                }
+
+                const editProdEl = e.target.closest("[data-edit-prod]");
+                if (editProdEl) {
+                    openProductFormModal(editProdEl.getAttribute("data-edit-prod"));
+                    return;
+                }
+
+                const delProdEl = e.target.closest("[data-del-prod]");
+                if (delProdEl) {
+                    products.splice(Number(delProdEl.getAttribute("data-del-prod")), 1);
+                    persistProducts();
+                    showToast("Product Removed");
+                    return;
+                }
+
+                const copySlipEl = e.target.closest("[data-copy-slip]");
+                if (copySlipEl) {
+                    const o = orders[Number(copySlipEl.getAttribute("data-copy-slip"))];
+                    if (o) {
+                        const slip = `Receiver Name: ${o.name}\nPhone: ${o.phone}\nCity: ${o.city}\nAddress: ${o.address}\nItems: ${(o.items || []).join(", ")}\nCOD Amount: Rs. ${o.total}`;
+                        copyTextToClipboard(slip);
+                        showToast("📋 Courier Slip Copied!");
+                    }
+                    return;
+                }
+
+                // 11. Brand Color Theme Preset Switcher
+                const themeBtn = e.target.closest("[data-theme-preset]");
+                if (themeBtn) {
+                    const preset = themeBtn.getAttribute("data-theme-preset");
+                    storeConfig.themePreset = preset;
+                    localStorage.setItem("ssp_v5_config", JSON.stringify(storeConfig));
+                    applyBrandTheme(preset);
+                    showToast("🎨 Brand Theme Applied!");
+                }
+            });
+
+            // Input & Select Listeners
+            document.getElementById("headerCatSelect").addEventListener("change", function () {
+                filterByCategory(this.value);
+            });
+            document.getElementById("desktopSearchInput").addEventListener("input", function () {
+                handleSearch(this.value);
+            });
+            document.getElementById("mobileSearchInput").addEventListener("input", function () {
+                handleSearch(this.value);
+            });
+            document.getElementById("catalogSortSelect").addEventListener("change", renderCatalogGrid);
+            document.getElementById("adminPinField").addEventListener("keydown", function (e) {
+                if (e.key === "Enter") unlockAdminPanel();
+            });
+            document.getElementById("trackInputField").addEventListener("keydown", function (e) {
+                if (e.key === "Enter") searchOrderTracking();
+            });
+
+            // Admin Order Status Change
+            document.addEventListener("change", function (e) {
+                const statusSel = e.target.closest("[data-order-status]");
+                if (statusSel) {
+                    const idx = Number(statusSel.getAttribute("data-order-status"));
+                    orders[idx].status = statusSel.value;
+                    localStorage.setItem("ssp_v5_orders", JSON.stringify(orders));
+                    showToast(`Status updated to ${statusSel.value}`);
+                }
+            });
+
+            // Form Submissions
+            document.getElementById("nativeOrderForm").addEventListener("submit", processNativeCODOrder);
+
+            document.getElementById("aiChatForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const inp = document.getElementById("aiUserInput");
+                const val = inp.value;
+                inp.value = "";
+                submitAIChat(val);
+            });
+
+            document.getElementById("aiImportSaveForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const imgs = document.getElementById("aiImgsInput").value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+                const finalImgs = imgs.length > 0 ? imgs : [FALLBACK_IMG];
+                const price = Number(document.getElementById("aiOutPrice").value);
+                const oldPrice = Number(document.getElementById("aiOutOldPrice").value) || Math.round(price * 1.35);
+                const costPrice = Number(document.getElementById("aiCostInput").value) || 0;
+
+                products.unshift({
+                    id: String(Date.now()),
+                    title: document.getElementById("aiOutTitle").value.trim(),
+                    category: document.getElementById("aiOutCat").value.trim(),
+                    price,
+                    oldPrice,
+                    costPrice,
+                    rating: 4.9,
+                    sold: 45,
+                    inStock: true,
+                    variants: [],
+                    images: finalImgs,
+                    img: finalImgs[0],
+                    highlights: document.getElementById("aiOutHighlights").value.split("\n").map(s => s.trim()).filter(Boolean),
+                    description: document.getElementById("aiOutDesc").value.trim()
+                });
+
+                persistProducts();
+                e.target.reset();
+                document.getElementById("aiSupplierRawText").value = "";
+                document.getElementById("aiImgsInput").value = "";
+                showToast("🎉 Published to Store!");
+                switchAdminTab("admProductsTab");
+            });
+
+            document.getElementById("brandSettingsForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                storeConfig.storeName = document.getElementById("cfgStoreName").value.trim() || "Smart Shopping";
+                storeConfig.storeSuffix = document.getElementById("cfgStoreSuffix").value.trim();
+                storeConfig.whatsapp = document.getElementById("cfgWaNumber").value.trim() || "923433335740";
+                storeConfig.logoUrl = document.getElementById("cfgLogoUrl").value.trim();
+                storeConfig.deliveryFee = Number(document.getElementById("cfgDeliveryFee").value) || 0;
+                storeConfig.adminPin = document.getElementById("cfgAdminPin").value.trim() || "1234";
+                storeConfig.webhookUrl = document.getElementById("cfgWebhookUrl").value.trim();
+
+                localStorage.setItem("ssp_v5_config", JSON.stringify(storeConfig));
+                renderBranding();
+                showToast("✅ Logo & Settings Saved!");
+            });
+
+            document.getElementById("cfgLogoFile").addEventListener("change", async function (e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const compressed = await compressImageFile(file, 300, 0.85);
+                document.getElementById("cfgLogoUrl").value = compressed;
+                showToast("Logo loaded! Click Save Logo & Store Settings.");
+            });
+
+            document.getElementById("pfMultiImageInput").addEventListener("change", async function (e) {
+                const files = Array.from(e.target.files);
+                if (files.length === 0) return;
+                const box = document.getElementById("pfImagesList");
+                document.getElementById("pfImgCountBadge").textContent = "Optimizing photos...";
+                const compressedUrls = await Promise.all(files.map(f => compressImageFile(f)));
+                const current = box.value.trim();
+                box.value = current ? `${current}\n${compressedUrls.join("\n")}` : compressedUrls.join("\n");
+                const totalImgs = box.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean).length;
+                document.getElementById("pfImgCountBadge").textContent = `${totalImgs} image(s) ready`;
+                showToast(`Added ${files.length} photo(s)!`);
+            });
+
+            document.getElementById("productEditorForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const id = document.getElementById("pfId").value;
+                const rawImgs = document.getElementById("pfImagesList").value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+                const finalImgs = rawImgs.length > 0 ? rawImgs : [FALLBACK_IMG];
+
+                const itemObj = {
+                    id: id || String(Date.now()),
+                    title: document.getElementById("pfTitle").value.trim(),
+                    category: document.getElementById("pfCategory").value.trim(),
+                    inStock: document.getElementById("pfInStock").value === "true",
+                    price: Number(document.getElementById("pfPrice").value),
+                    oldPrice: Number(document.getElementById("pfOldPrice").value) || 0,
+                    costPrice: Number(document.getElementById("pfCostPrice").value) || 0,
+                    variants: document.getElementById("pfVariants").value.split(",").map(s => s.trim()).filter(Boolean),
+                    images: finalImgs,
+                    img: finalImgs[0],
+                    highlights: document.getElementById("pfHighlights").value.split("\n").map(s => s.trim()).filter(Boolean),
+                    description: document.getElementById("pfDescription").value.trim(),
+                    rating: 4.9,
+                    sold: 120
+                };
+
+                if (id) {
+                    const idx = products.findIndex(x => String(x.id) === String(id));
+                    if (idx !== -1) {
+                        itemObj.rating = products[idx].rating;
+                        itemObj.sold = products[idx].sold;
+                        products[idx] = itemObj;
+                    }
+                } else {
+                    products.unshift(itemObj);
+                }
+
+                persistProducts();
+                closeOverlay("productFormModal");
+                showToast("✅ Product Saved!");
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
+                    e.preventDefault();
+                    openAdminPanel();
+                }
+            });
+
+            // =====================================================================
+            // 12. INITIALIZE STOREFRONT ON PAGE LOAD
+            // =====================================================================
+            function initStore() {
+                renderBranding();
+                renderCategoryNavigation();
+                updateCartCounter();
+
+                const params = new URLSearchParams(window.location.search);
+                const queryProdId = params.get("product");
+                const hash = window.location.hash;
+
+                if (hash === "#admin") {
+                    renderCatalogGrid();
+                    openAdminPanel();
+                } else if (queryProdId && products.some(p => String(p.id) === String(queryProdId))) {
+                    openProductDetailView(String(queryProdId));
+                } else if (hash.startsWith("#product-")) {
+                    const hId = hash.replace("#product-", "");
+                    if (products.some(p => String(p.id) === String(hId))) {
+                        openProductDetailView(String(hId));
+                    } else {
+                        goHomeView();
+                    }
+                } else {
+                    goHomeView();
+                }
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initStore);
+            } else {
+                initStore();
+            }
+        })();
+    </script>
+</body>
+</html>
